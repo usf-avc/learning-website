@@ -3,7 +3,7 @@
  * The location of the inventory.json file on the AVC server.
  * @type {string}
  */
-const inventoryUrl = "http://avc.web.usf.edu/stem-scholars/inventory.json";
+const inventoryUrl = "https://cdn.rawgit.com/usf-avc/learning-website/master/remote-files/inventory.json";
 
 /**
  * The text to put after the number of items in stock. This is kept as a
@@ -14,7 +14,7 @@ const inventoryUrl = "http://avc.web.usf.edu/stem-scholars/inventory.json";
  * @property {string} plural The text to show if there are multiple items left.
  */
 const inStockText = {
-  none: "items in stock. Please check later!",
+  none: "items in stock. <br> Please check back later.",
   singular: "item in stock. Hurry!",
   plural: "items in stock."
 };
@@ -30,36 +30,49 @@ function getJSONData(url) {
   // the data immediately. Instead, it returns a "Promise" to return the data
   // when it can.
   return new Promise(function(resolve, reject) {
+    console.group("getJSONData()");
 
     // fetch() is an easy way to request data by URL:
+    console.log("Request sent to URL:", url);
     fetch(url)
       // After the request finishes, the response is recieved by this then() 
       // function:
       .then(function(response) {
-        console.log(response);
+        console.log("Response recieved:", response);
+
         if(response.status === 200) {
+          console.log("Request was successful.");
           // The status is 200 when the request goes through successfully.
           // If this happens, the json() function will turn the plain text data
           // into an object that we can easily read. That object will be recieved
           // by the then() function below after it's done being parsed.
-          return textResponse.json();
+          return response.json();
 
         } else {
+          console.log("Request was unsuccessful.");
           // If the response is not 200 (for example, it could be 404, which
           // means the resource doesn't exist) we know the call failed.
           // If this happens, the Error will be caught by catch() below, causing
           // the promise to reject.
-          throw Error(`Server request failed (status: ${response.status})`);
+          throw Error(`Server request failed (status: ${response.statusText})`);
         }
       })
       // Assuming everything went well, this then() function now gets the object:
       .then(function(processedData) {
+        console.log("Data processed:", processedData);
+
         // Successfully resolve the Promise with the processed data:
+        console.log("Promise resolved 👍.");
+        console.groupEnd();
         resolve(processedData);
       })
       // In case something went wrong, this catch() function will catch the error:
       .catch(function(error) {
+        console.error(error);
+
         // Reject the promise with the error information:
+        console.warn("Promise rejected 👎.");
+        console.groupEnd();
         reject(error);
       });
   });
@@ -78,6 +91,7 @@ function getInventoryData() {
 // Once all of the HTML and CSS has loaded, we can start reading and modifying
 // the contents of the page.
 window.onload = function() {
+  console.log("Page loaded.");
 
   // We need to find all of the items on the page and store them for later.
   // Lets create an empty object to store them in:
@@ -109,29 +123,36 @@ window.onload = function() {
   // category in that object is its own object that contains every item in
   // the category. The following statement logs the object to the console so
   // you can inspect it:
-  console.log(itemsByCategory);
+  console.log("Items found and stored:", itemsByCategory);
 
   // Let's get the inventory data and update the page:
   getInventoryData().then(function(inventoryData) {
     // inventoryData is an object that is structured almost the same way as our
     // itemsByCategory object from above.
-    console.log(inventoryData);
+    console.log("Data recieved:", inventoryData);
 
     // Now we need to loop over all the items and update each of their "in stock"
     // counts. itemsByCategory is an object, not an array, so we can't forEach
     // directly on it, but we can if we use the entries() method, which
     // returns an array of two-element arrays, where the first element is the
     // key and the second is the value:
-    itemsByCategory.entries().forEach(function(category) {
+    Object.entries(itemsByCategory).forEach(function(category) {
+
       // We used the category id as the key before, so it's the first element now:
       let categoryId = category[0];
+      
+      console.groupCollapsed(categoryId);
+      console.log("Updating items in category with id:", categoryId);
 
       // The items were stored as the value, so the second element is is the
       // object that has all the items. We have to do the same thing here and 
       // get the entries of this sub-object:
-      category[1].entries().forEach(function(item) {
+      Object.entries(category[1]).forEach(function(item) {
         // We used the item id as the key before, so it's the first element now:
-        let itemId = item[0];
+        let itemId = item[0], itemElement = item[1];
+
+        console.groupCollapsed(itemId);
+        console.log("Updating info for item with id:", itemId);
 
         // Now we have all of the information necessary to get the data from the
         // inventoryData object. We needed the category id and the element id.
@@ -151,25 +172,35 @@ window.onload = function() {
           // Just one item in stock.
           itemStockText = inStockText.singular;
         }
+
+        console.log("Full stock text:", itemStockAmount, itemStockText);
+        console.log("Item in stock:", itemInStock);
         
-        // Now it's time to use that information by changing the page contents:
-        item.querySelector(".inStockCount").textContent = itemStockAmount;
-        item.querySelector(".inStockText").textContent = itemStockText;
+        // Now it's time to use that information by changing the page contents.
+        itemElement.querySelector(".inStockCount").innerHTML = itemStockAmount;
+        itemElement.querySelector(".inStockText").innerHTML = itemStockText;
+
         // And let's add an outOfStock class and disable buttons for any items
         // that are out of stock:
         if(itemInStock === false) {
-          item.classList.add("outOfStock");
-          item.querySelector(".addToCartButton").disabled = true;
+          itemElement.classList.add("outOfStock");
+          itemElement.querySelector(".addToCartButton").disabled = true;
         } else {
           // Make sure the ones that are in stock don't have that class
-          item.classList.remove("outOfStock");
-          item.querySelector(".addToCartButton").disabled = false;
+          itemElement.classList.remove("outOfStock");
+          itemElement.querySelector(".addToCartButton").disabled = false;
         }
+        console.log("All item info updated successfully.");
+        console.groupEnd();
       });
 
-      console.log(`Stock info for ${category.id} has been updated.`);
+      console.log("Stock info has been updated successfully for this category.");
+      console.groupEnd();
     });
 
-    console.info("Success! All stock info has been updated.");
+    console.log("Success! All stock info has been updated.");
+  })
+  .catch(function(error) {
+    console.error(error);
   });
 };
