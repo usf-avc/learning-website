@@ -1,0 +1,301 @@
+
+/* Site-wide styles: */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  margin: 0;
+  --primary-color: rgba(21, 101, 192, 0.9);
+}
+
+/* Blue page header area: */
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  background:
+    linear-gradient(
+      var(--primary-color), 
+      var(--primary-color)
+    ), 
+    center 30% / cover no-repeat url(images/cover-image.jpg);
+  padding: calc(5rem + 5vw) 2rem calc(3rem + 5vw);
+}
+
+.largeLogo {
+  height: auto;
+  width: 9rem;
+  max-width: 40%;
+}
+
+header h1 {
+  font-family: Comfortaa;
+  font-weight: 400;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+header .tagline {
+  font-family: Lato;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1rem;
+}
+
+/* Sticky navigation bar: */
+header nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  background: var(--primary-color);
+  box-shadow: 0 -0.1rem 0.5rem 0.2rem rgba(0,0,0, 0.5);
+  padding: 0.5em calc((100vw - 70rem)/2);
+  align-items: center;
+}
+
+/* Site logo and "AVC": */
+.siteName {
+  font-family: Comfortaa;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+}
+
+.smallLogo {
+  height: 1.5rem;
+  width: auto;
+  margin: 0 1rem;
+}
+
+/* Navigation menu: */
+.shortcuts {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.shortcuts li {
+  padding: 0 0.75rem;
+}
+
+.shortcuts a {
+  color: white;
+  text-decoration: none;
+  font-family: lato;
+  font-weight: bold;
+}
+
+.shortcuts a:hover {
+  text-decoration: underline;
+}
+
+/* Cart button: */
+.cartButtonContainer {
+  flex: 1;
+  text-align: right;
+}
+
+.openCartButton {
+  background-color: transparent;
+  border: none;
+  text-transform: uppercase;
+  font-family: Lato;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: white;
+  border: 2px solid transparent;
+  border-radius: 3em;
+  transition: 0.2s ease border, 0.1s ease background;
+}
+
+.openCartButton:hover, .openCartButton:focus {
+  border: 2px solid white;
+}
+
+.openCartButton:active {
+  background-color: rgba(255,255,255,0.2)
+}
+
+/* Main content area: */
+main {
+  padding: 0 2rem 2rem;
+  max-width: 74rem;
+  margin: auto;
+}
+
+.category h2 {
+  font-family: Comfortaa;
+  font-weight: 700;
+  width: 100%;
+  border-bottom: 2px solid var(--primary-color);
+  letter-spacing: 2px;
+  padding-bottom: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  padding-top: 4.5rem;
+  margin-top: 0;
+}
+
+.category:target h2 {
+  border-bottom-width: 3px;
+}
+
+/* Shop items: */
+.itemGrid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  width: calc(100% / 4 - 2rem);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 1rem;
+  font-family: Lato;
+}
+
+.itemName {
+  font-family: Comfortaa;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.itemInStock {
+  margin-top: 0;
+  padding-top: 0;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.itemImage {
+  width: 80%;
+  max-width: 9rem;
+  height: auto;
+  align-self: center;
+  padding: 1rem;
+}
+
+.itemDescription {
+  flex-grow: 1;
+  margin-top: 0;
+}
+
+.itemPrice {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.addToCartButton {
+  background-color: white;
+  border: 2px solid var(--primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 3rem;
+  align-self: center;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease color, 0.2s ease background-color, 0.2s ease box-shadow;
+  letter-spacing: 0.5px;
+}
+
+.addToCartButton:hover, .addToCartButton:focus {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 2px 0.5rem rgba(0,0,0,0.4);
+}
+
+.addToCartButton:active {
+  box-shadow: none;
+}
+
+/* Footer: */
+footer {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  font-family: lato;
+}
+
+footer a {
+  color: white;
+  text-decoration: underline;
+}
+
+
+/* Switch to 3-column grid: */
+@media only screen and (max-width: 60rem) {
+  .item {
+    width: calc(100% / 3 - 2rem);
+  }
+}
+
+/* Switch to two-column grid and more room in header;
+also, move navigation links to bottom of the screen: */
+@media only screen and (max-width: 45rem) {
+  header {
+    padding: calc(7rem + 5vw) 2rem calc(5rem + 5vw);
+  }
+
+  .item {
+    width: calc(100% / 2 - 2rem);
+  }
+
+  .shortcuts {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 0.1rem 0.5rem 0.2rem rgba(0,0,0, 0.5);
+    padding: 1rem;
+    justify-content: space-evenly;
+    text-align: center;
+    overflow-x: scroll;
+  }
+
+  .shortcuts a {
+    color: var(--primary-color);
+  }
+
+  footer {
+    padding-bottom: 7rem;
+  }
+}
+
+/* Switch to single-column grid and make buttons touch-friendly: */
+@media only screen and (max-width: 30rem) {
+  .item {
+    width: calc(100% - 2rem);
+  }
+
+  .itemDescription {
+    text-align: center;
+  }
+
+  .addToCartButton {
+    padding: 0.75rem 1.25rem;
+  }
+}

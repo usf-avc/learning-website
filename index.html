@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <link rel="shortcut icon" href="images/logo-favicon.png" type="image/x-icon">
+  <title>USF Advanced Visualization Center - Online Shop</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700|Lato:400,700" rel="stylesheet"> 
+  
+  <script src="check-inventory.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#header" class="siteName">
+        <!-- Making this logo 0x0 pixels ensures it won't show up if the CSS doesn't load. -->
+        <img src="images/logo-square-small.png" class="smallLogo" height="0" width="0"> 
+        <span>AVC</span>
+      </a>
+      <ul class="shortcuts">
+        <li><a href="#cameras">Cameras</a></li>
+        <li><a href="#camera-accessories">Camera Accessories</a></li>
+        <li><a href="#virtual-reality">Virtual Reality</a></li>
+        <li><a href="#vr-accessories">VR Accessories</a></li>
+      </ul>
+      <span class="cartButtonContainer"><button class="openCartButton">View Cart</button></span>
+    </nav>
+
+    <!-- Making this logo 0x0 pixels ensures it won't show up if the CSS doesn't load. -->
+    <img src="images/logo-square-large.png" class="largeLogo" height="0" width="0">
+    <h1>Advanced Visualization Center</h1>
+    <span class="tagline">virtual reality and photography equipment</span>
+  </header>
+
+  <main>
+    <section class="category" id="cameras">
+      <h2>Cameras</h2>
+      <div class="itemGrid">
+
+        <div class="item" id="canon-eos-80d">
+          <img class="itemImage" src="images/cameras/canon-eos-80d.jpeg">
+          <h3 class="itemName">Canon EOS 80d</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">Whether raising your game to SLR level photography or having fun with a feature-rich, versatile SLR you can use pretty much anywhere, the EOS 80D camera is your answer.</p>
+          <div class="itemPrice">$999.00</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+        <div class="item" id="canon-eos-rebel-t6">
+          <img class="itemImage" src="images/cameras/canon-eos-rebel-t6.jpeg">
+          <h3 class="itemName">Canon EOS Rebel T6</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">The camera with the quality your photos deserve, the EOS Rebel T6 can be ideal for smartphone or digital point-and-shoot camera users looking to step up their imaging game.</p>
+          <div class="itemPrice">$549.99</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+        <div class="item" id="canon-eos-rebel-t6s">
+          <img class="itemImage" src="images/cameras/canon-eos-rebel-t6s.jpeg">
+          <h3 class="itemName">Canon EOS Rebel T6s</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">Designed to make high quality imaging simple and fun, the EOS Rebel T6s camera is the most sophisticated Rebel ever.</p>
+          <div class="itemPrice">$1,199.00</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+        <div class="item" id="ricoh-theta-s">
+          <img class="itemImage" src="images/cameras/ricoh-theta-s.jpeg">
+          <h3 class="itemName">Ricoh Theta S</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">From still images to long movies (max. 25 minutes long), record your memories in a vivid, high resolution 360° world.</p>
+          <div class="itemPrice">$235.33</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+        <div class="item" id="samsung-gear-360">
+          <img class="itemImage" src="images/cameras/samsung-gear-360.jpeg">
+          <h3 class="itemName">Samsung Gear 360</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">The Gear 360 has evolved to let you record in 4K or broadcast live, and then make it your own with the Samsung Gear 360 app.</p>
+          <div class="itemPrice">$229.99</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+        <div class="item" id="gopro-hero-4">
+          <img class="itemImage" src="images/cameras/gopro-hero-4.jpeg">
+          <h3 class="itemName">GoPro Hero 4</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">HERO4 Black takes Emmy Award-winning GoPro performance to the next level with our best image quality yet, plus a 2x more powerful processor that delivers super slow motion at 240 frames per second.</p>
+          <div class="itemPrice">$179.00</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="category" id="camera-accessories">
+      <h2>Camera Accessories</h2>
+      <div class="itemGrid">
+
+        <div class="item" id="canon-lens-18-135mm">
+          <img class="itemImage" src="images/camera-accessories/canon-lens-18-135mm.jpeg">
+          <h3 class="itemName">Canon 18-135mm Lens</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">Designed to exceed expectations and ideal for video and still images alike, the new EF-S 18-135mm f/3.5-5.6 IS STM marks a new standard for EF-S lenses.</p>
+          <div class="itemPrice">$549.99</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+        <div class="item" id="canon-lens-55-250mm">
+          <img class="itemImage" src="images/camera-accessories/canon-lens-55-250mm.jpeg">
+          <h3 class="itemName">Canon 55-250mm Lens</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">For photographers and videographers looking to add versatility and range to their lens collection, the new EF-S 55-250mm f/4-5.6 IS STM telephoto zoom lens is a dream come true.</p>
+          <div class="itemPrice">$299.99</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+        <div class="item" id="polaroid-50in-tripod">
+          <img class="itemImage" src="images/camera-accessories/polaroid-50in-tripod.jpeg">
+          <h3 class="itemName">Polaroid 50" Tripod</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">Regardless if you're a casual photographer/videographer or a serious "prosumer" there's a Polaroid tripod designed with your needs in mind.</p>
+          <div class="itemPrice">$21.40</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+        <div class="item" id="polaroid-flash-module">
+          <img class="itemImage" src="images/camera-accessories/polaroid-flash-module.jpeg">
+          <h3 class="itemName">Polaroid Flash Module</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">Add some more light to your scene with the PL-ASF18 Studio Series Pro Slave Flash from Polaroid, featuring a guide number of 46' at ISO 100.</p>
+          <div class="itemPrice">$11.99</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="category" id="virtual-reality">
+      <h2>Virtual Reality</h2>
+      <div class="itemGrid">
+
+        <div class="item" id="htc-vive">
+          <img class="itemImage" src="images/virtual-reality/htc-vive.jpeg">
+          <h3 class="itemName">HTC Vive</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">VIVE gives you an unparalleled, true-to-life virtual reality experience. Using a headset and wireless controllers, you can explore and interact with VR experiences, apps and games that blur the line between imagination and reality.</p>
+          <div class="itemPrice">$498.40</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+        <div class="item" id="oculus-go">
+          <img class="itemImage" src="images/virtual-reality/oculus-go.jpeg">
+          <h3 class="itemName">Oculus Go</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">Easily enter virtual reality with no PC or wires attached. Oculus Go is a Standalone VR headset made to fit you.</p>
+          <div class="itemPrice">$199.00</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+        <div class="item" id="oculus-rift">
+          <img class="itemImage" src="images/virtual-reality/oculus-rift.jpeg">
+          <h3 class="itemName">Oculus Rift</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">Rift is unlike anything you've ever experienced. Whether you're stepping into your favorite game, watching an immersive VR movie, jumping to a destination on the other side of the world, or just spending time with friends in VR, you'll feel like you're really there.</p>
+          <div class="itemPrice">$399.00</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="category" id="vr-accessories">
+      <h2><abbr title="Virtual Reality">VR</abbr> Accessories</h2>
+      <div class="itemGrid">
+
+        <div class="item" id="gamesir-g3s-gamepad">
+          <img class="itemImage" src="images/vr-accessories/gamesir-g3s-gamepad.jpeg">
+          <h3 class="itemName">Gamesir G3s Gamepad</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">G3s adopts a 32-bit MCU chip, computing capability is up to 48 million times per second.</p>
+          <div class="itemPrice">$32.99</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+        <div class="item" id="leap-motion-controller">
+          <img class="itemImage" src="images/vr-accessories/leap-motion-controller.jpeg">
+          <h3 class="itemName">Leap Motion Controller</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">Get started developing with Leap Motion technology today – use our standalone controller or add a Universal VR Developer Mount for hands in VR.</p>
+          <div class="itemPrice">$79.99</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+        <div class="item" id="logitech-gamepad">
+          <img class="itemImage" src="images/vr-accessories/logitech-gamepad.jpeg">
+          <h3 class="itemName">Logitech Wireless Gamepad</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">Designed for the PC gamer looking for an advanced console-style controller.</p>
+          <div class="itemPrice">$49.99</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+        <div class="item" id="myo-armband">
+          <img class="itemImage" src="images/vr-accessories/myo-armband.jpeg">
+          <h3 class="itemName">Myo Gesture Control Armband</h3>
+          <p class="itemInStock">
+            <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
+          </p>
+          <p class="itemDescription">The Myo armband is a wearable gesture control and motion control device that lets you take control of your phone, computer, and so much more, touch-free.</p>
+          <div class="itemPrice">$199.00</div>
+          <button class="addToCartButton">Add to Cart</button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+      ©2018 Advanced Visualization Center - <a href="mailto:advancedvisualizationcenter@gmail.com">Contact Us</a>
+  </footer>
+</body>
+</html>
