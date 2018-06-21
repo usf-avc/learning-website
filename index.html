@@ -12,6 +12,17 @@
   <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700|Lato:400,700" rel="stylesheet"> 
   
   <script src="check-inventory.js"></script>
+  <script src="collapse-categories.js"></script>
+  <script>
+    // Once all of the HTML and CSS has loaded, we can start reading and modifying
+    // the contents of the page.
+    window.addEventListener("load", function() {
+      console.log("Page loaded.");
+
+      addCollapseButtonEventListeners();
+      updateInventoryInfo();
+    });
+  </script>
 </head>
 <body>
   <header>

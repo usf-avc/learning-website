@@ -225,11 +225,10 @@ function getItemElements() {
   return itemsByCategory;
 }
 
-// Once all of the HTML and CSS has loaded, we can start reading and modifying
-// the contents of the page.
-window.onload = function() {
-  console.log("Page loaded.");
-
+/**
+ * Update the inventory information on the page.
+ */
+function updateInventoryInfo() {
   // We could wait and get the elements after recieving the data, but it's faster
   // to do it while waiting for the request, since we have to wait anyway.
   let itemsByCategory = getItemElements();
@@ -247,4 +246,4 @@ window.onload = function() {
       // Just in case anything goes wrong.
       console.error(error);
     });
-};
+}
