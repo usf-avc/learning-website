@@ -88,10 +88,93 @@ function getInventoryData() {
   return getJSONData(inventoryUrl);
 }
 
-// Once all of the HTML and CSS has loaded, we can start reading and modifying
-// the contents of the page.
-window.onload = function() {
-  console.log("Page loaded.");
+/**
+ * Update the "in stock" information on the page.
+ * @param {Object} inventoryData Processed data object from the JSON on the server.
+ * @param {Object} itemsByCategory Object with all of the item elements, arranged
+ * by category.
+ */
+function updateInfoOnPage(inventoryData, itemsByCategory) {
+  console.group("updateInfoOnPage()");
+  console.log("Updating stock information on the page...");
+
+  // We need to loop over all the items and update each of their "in stock"
+  // counts. itemsByCategory is an object, not an array, so we can't forEach
+  // directly on it, but we can if we use the entries() method, which
+  // returns an array of two-element arrays, where the first element is the
+  // key and the second is the value:
+  Object.entries(itemsByCategory).forEach(function(category) {
+
+    // We used the category id as the key before, so it's the first element now:
+    let categoryId = category[0];
+    
+    console.groupCollapsed(categoryId);
+    console.log("Updating items in category with id:", categoryId);
+
+    // The items were stored as the value, so the second element is is the
+    // object that has all the items. We have to do the same thing here and 
+    // get the entries of this sub-object:
+    Object.entries(category[1]).forEach(function(item) {
+      // We used the item id as the key before, so it's the first element now:
+      let itemId = item[0], itemElement = item[1];
+
+      console.groupCollapsed(itemId);
+      console.log("Updating info for item with id:", itemId);
+
+      // Now we have all of the information necessary to get the data from the
+      // inventoryData object. We needed the category id and the element id.
+      let itemStockAmount = inventoryData[categoryId][itemId].amountInStock;
+
+      // Let's figure out which text to use by checking the stock amount:
+      let itemStockText, itemInStock = true;
+      if(itemStockAmount > 1) {
+        // Multiple items are in stock.
+        itemStockText = inStockText.plural;
+      } else if(itemStockAmount <= 0) {
+        // No items in stock. If the stock amount is a negative number, that's
+        // definitely an error and we don't want the customer to see that.
+        itemStockText = inStockText.none;
+        itemInStock = false;
+      } else {
+        // Just one item in stock.
+        itemStockText = inStockText.singular;
+      }
+
+      console.log("Full stock text:", itemStockAmount, itemStockText);
+      console.log("Item in stock:", itemInStock);
+      
+      // Now it's time to use that information by changing the page contents.
+      itemElement.querySelector(".inStockCount").innerHTML = itemStockAmount;
+      itemElement.querySelector(".inStockText").innerHTML = itemStockText;
+
+      // And let's add an outOfStock class and disable buttons for any items
+      // that are out of stock:
+      if(itemInStock === false) {
+        itemElement.classList.add("outOfStock");
+        itemElement.querySelector(".addToCartButton").disabled = true;
+      } else {
+        // Make sure the ones that are in stock don't have that class
+        itemElement.classList.remove("outOfStock");
+        itemElement.querySelector(".addToCartButton").disabled = false;
+      }
+      console.log("All item info updated successfully.");
+      console.groupEnd();
+    });
+
+    console.log("Stock info has been updated successfully for this category.");
+    console.groupEnd();
+  });
+
+  console.log("Success! All stock info has been updated.");
+  console.groupEnd();
+}
+
+/**
+ * Find and store all of the needed item elements from the page.
+ */
+function getItemElements() {
+  console.group("getItemElements()");
+  console.log("Searching for items on the page...");
 
   // We need to find all of the items on the page and store them for later.
   // Lets create an empty object to store them in:
@@ -106,6 +189,9 @@ window.onload = function() {
   categoryElementsArray.forEach(function(categoryElement) {
     // Save the category name:
     let categoryId = categoryElement.id;
+    console.groupCollapsed(categoryId);
+    console.log("Getting items for category with id: ", categoryId);
+
     // Add the category as an empty object child of our itemsByCategory object:
     itemsByCategory[categoryId] = {};
     // Each category is an HTML <section> element. Let's get all the items in
@@ -114,9 +200,19 @@ window.onload = function() {
     let itemElementsArray = Array.from(itemElements);
     //Now we can loop over the items. This is a loop within a loop:
     itemElementsArray.forEach(function(itemElement) {
+      let itemId = itemElement.id;
+      console.groupCollapsed(itemId);
+      console.log("Found item with id:", itemId);
+      console.log(itemElement);
+
       // And finally add each item to the category object it belongs to.
       itemsByCategory[categoryId][itemElement.id] = itemElement;
+      console.log("Item added.");
+      console.groupEnd();
     });
+
+    console.log("All items found for this category:", itemsByCategory[categoryId]);
+    console.groupEnd();
   });
 
   // Now itemsByCategory is an object that contains every category, and each
@@ -124,83 +220,31 @@ window.onload = function() {
   // the category. The following statement logs the object to the console so
   // you can inspect it:
   console.log("Items found and stored:", itemsByCategory);
+  console.groupEnd();
+
+  return itemsByCategory;
+}
+
+// Once all of the HTML and CSS has loaded, we can start reading and modifying
+// the contents of the page.
+window.onload = function() {
+  console.log("Page loaded.");
+
+  // We could wait and get the elements after recieving the data, but it's faster
+  // to do it while waiting for the request, since we have to wait anyway.
+  let itemsByCategory = getItemElements();
 
   // Let's get the inventory data and update the page:
-  getInventoryData().then(function(inventoryData) {
-    // inventoryData is an object that is structured almost the same way as our
-    // itemsByCategory object from above.
-    console.log("Data recieved:", inventoryData);
+  getInventoryData()
+    .then(function(inventoryData) {
+      // The data was recieved and processed succesfully.
+      console.log("Data recieved:", inventoryData);
 
-    // Now we need to loop over all the items and update each of their "in stock"
-    // counts. itemsByCategory is an object, not an array, so we can't forEach
-    // directly on it, but we can if we use the entries() method, which
-    // returns an array of two-element arrays, where the first element is the
-    // key and the second is the value:
-    Object.entries(itemsByCategory).forEach(function(category) {
-
-      // We used the category id as the key before, so it's the first element now:
-      let categoryId = category[0];
-      
-      console.groupCollapsed(categoryId);
-      console.log("Updating items in category with id:", categoryId);
-
-      // The items were stored as the value, so the second element is is the
-      // object that has all the items. We have to do the same thing here and 
-      // get the entries of this sub-object:
-      Object.entries(category[1]).forEach(function(item) {
-        // We used the item id as the key before, so it's the first element now:
-        let itemId = item[0], itemElement = item[1];
-
-        console.groupCollapsed(itemId);
-        console.log("Updating info for item with id:", itemId);
-
-        // Now we have all of the information necessary to get the data from the
-        // inventoryData object. We needed the category id and the element id.
-        let itemStockAmount = inventoryData[categoryId][itemId].amountInStock;
-
-        // Let's figure out which text to use by checking the stock amount:
-        let itemStockText, itemInStock = true;
-        if(itemStockAmount > 1) {
-          // Multiple items are in stock.
-          itemStockText = inStockText.plural;
-        } else if(itemStockAmount <= 0) {
-          // No items in stock. If the stock amount is a negative number, that's
-          // definitely an error and we don't want the customer to see that.
-          itemStockText = inStockText.none;
-          itemInStock = false;
-        } else {
-          // Just one item in stock.
-          itemStockText = inStockText.singular;
-        }
-
-        console.log("Full stock text:", itemStockAmount, itemStockText);
-        console.log("Item in stock:", itemInStock);
-        
-        // Now it's time to use that information by changing the page contents.
-        itemElement.querySelector(".inStockCount").innerHTML = itemStockAmount;
-        itemElement.querySelector(".inStockText").innerHTML = itemStockText;
-
-        // And let's add an outOfStock class and disable buttons for any items
-        // that are out of stock:
-        if(itemInStock === false) {
-          itemElement.classList.add("outOfStock");
-          itemElement.querySelector(".addToCartButton").disabled = true;
-        } else {
-          // Make sure the ones that are in stock don't have that class
-          itemElement.classList.remove("outOfStock");
-          itemElement.querySelector(".addToCartButton").disabled = false;
-        }
-        console.log("All item info updated successfully.");
-        console.groupEnd();
-      });
-
-      console.log("Stock info has been updated successfully for this category.");
-      console.groupEnd();
+      // Update the page using the recieved data:
+      updateInfoOnPage(inventoryData, itemsByCategory);
+    })
+    .catch(function(error) {
+      // Just in case anything goes wrong.
+      console.error(error);
     });
-
-    console.log("Success! All stock info has been updated.");
-  })
-  .catch(function(error) {
-    console.error(error);
-  });
 };
