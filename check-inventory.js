@@ -17,7 +17,8 @@ const inStockText = {
   none: "items in stock. <br> Please check back later.",
   singular: "item in stock. Hurry!",
   plural: "items in stock."
-};
+},
+outOfStockButtonText = "Out of Stock";
 
 /**
  * Recieve and process some JSON data located at a remote URL.
@@ -151,7 +152,9 @@ function updateInfoOnPage(inventoryData, itemsByCategory) {
       // that are out of stock:
       if(itemInStock === false) {
         itemElement.classList.add("outOfStock");
-        itemElement.querySelector(".addToCartButton").disabled = true;
+        let addToCartButton = itemElement.querySelector(".addToCartButton");
+        addToCartButton.disabled = true;
+        addToCartButton.innerHTML = outOfStockButtonText;
       } else {
         // Make sure the ones that are in stock don't have that class
         itemElement.classList.remove("outOfStock");
