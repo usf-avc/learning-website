@@ -111,13 +111,13 @@ header nav {
 }
 
 .openCartButton {
-  background: center / contain no-repeat url(images/icons/cart.svg), transparent;
+  background: transparent;
   border: none;
   text-transform: uppercase;
   font-family: Lato;
   font-weight: bold;
   letter-spacing: 1px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   cursor: pointer;
   color: white;
   border: 2px solid transparent;
@@ -143,12 +143,14 @@ main {
 
 .category {
   position: relative;
+  overflow: hidden;
   transition: 0.5s ease height;
 }
 
 .category.collapsed {
-  overflow: hidden;
-  height: 8rem;
+  /* !important allows the height style to override the per-element style that
+      was set with JavaScript. */
+  height: 8rem !important;
 }
 
 .collapseCategoryButton {
@@ -160,11 +162,12 @@ main {
   height: 2rem;
   width: 2rem;
   cursor: pointer;
+  transform: rotate(-90deg);
+  transition: 0.5s 0.5s ease transform;
+  /* Hide the text in the button: */
   text-indent: 200%;
   white-space: nowrap;
   overflow: hidden;
-  transform: rotate(-90deg);
-  transition: 0.5s ease transform;
 }
 
 .collapsed .collapseCategoryButton {
