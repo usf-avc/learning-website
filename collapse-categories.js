@@ -1,11 +1,13 @@
+/**
+ * @todo add console logging for this file
+ */
+
 
 /**
- * Collapse the parent section if it's not collapsed, or expand it if it is.
- * @param {HTMLButtonElement} collapseButton The button that was clicked.
+ * Collapse the section if it's not collapsed, or expand it if it is.
+ * @param {HTMLSectionElement} sectionElement The section to collapse.
  */
-function toggleSectionCollapse(collapseButton) {
-  let sectionElement = collapseButton.parentElement;
-
+function toggleSectionCollapse(section) {
   sectionElement.classList.toggle("collapsed");
 }
 
@@ -25,7 +27,7 @@ function updateSectionHeights() {
 }
 
 /**
- * Add click listeners to all the collapse buttons on the page.
+ * Add click listeners to all the collapse buttons on the page, and fix animations.
  */
 function initializeCategoryCollapsing() {
   // Find all of the buttons on the page:
@@ -37,7 +39,8 @@ function initializeCategoryCollapsing() {
   // Loop through the array, assigning the event listener to each button:
   collapseButtonElementsArray.forEach(function(buttonElement) {
     buttonElement.addEventListener("click", function() {
-      toggleSectionCollapse(this);
+      let parentSection = this.parentElement;
+      toggleSectionCollapse(parentSection);
     });
   });
 
