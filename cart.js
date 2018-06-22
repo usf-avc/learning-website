@@ -166,7 +166,7 @@ function buildCart() {
       console.groupEnd();
     });
   } else {
-    console.log("The cart is empty.")
+    console.log("The cart is empty.");
     // If there are no items in the cart:
     html = `<div class="item noItems"><span>There are no items in your cart yet. Go add some!</span></div>`;
   }
@@ -252,7 +252,7 @@ function updateAmountInCart(itemId, amount) {
  */
 function initializeCart() {
   console.groupCollapsed("initializeCart()");
-  console.log("Initializing cart behaviour.")
+  console.log("Initializing cart behaviour.");
 
   // Find all the add to cart buttons
   let addToCartButtons = document.querySelectorAll(".addToCartButton"),
