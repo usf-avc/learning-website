@@ -1,39 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <!-- These tags just help the site display better at different sizes -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
+  <!-- This changes the tab/shortcut icon -->
   <link rel="shortcut icon" href="images/logo-favicon.png" type="image/x-icon">
+  <!-- The name of the page -->
   <title>USF Advanced Visualization Center - Online Shop</title>
 
+  <!-- Load the styles, so thje page has color and layout -->
   <link rel="stylesheet" href="styles.css">
+  <!-- Load the fonts, from another website. This way we can use fonts that aren't on our computer -->
   <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700|Lato:400,700" rel="stylesheet"> 
 </head>
+
 <body>
+  <!-- Big banner image area at top of page -->
   <header class="banner">
+    <!-- Menu bar that stays stuck to the top of the page -->
     <nav>
+      <!-- Small logo and "AVC" -->
       <a href="#header" class="siteName">
         <!-- Making this logo 0x0 pixels ensures it won't show up if the CSS doesn't load. -->
         <img src="images/logo-square-small.png" class="smallLogo" height="0" width="0"> 
         <span>AVC</span>
       </a>
+
+      <!-- Main menu -->
       <ul class="shortcuts">
         <li><a href="#cameras">Cameras</a></li>
         <li><a href="#camera-accessories">Camera Accessories</a></li>
         <li><a href="#virtual-reality">Virtual Reality</a></li>
         <li><a href="#vr-accessories">VR Accessories</a></li>
       </ul>
-      <span class="cartButtonContainer"><button class="toolBarTextButton openCartButton">View Cart</button></span>
+
+      <!-- "View Cart" -->
+      <span class="cartButtonContainer">
+        <button class="toolBarTextButton openCartButton">View Cart</button>
+      </span>
     </nav>
 
+    <!-- Logo and site name in banner image area -->
     <!-- Making this logo 0x0 pixels ensures it won't show up if the CSS doesn't load. -->
     <img src="images/logo-square-large.png" class="largeLogo" height="0" width="0">
     <h1>Advanced Visualization Center</h1>
     <span class="tagline">virtual reality and photography equipment</span>
   </header>
 
+  <!-- Main content (the shop items) -->
   <main>
     <section class="category" id="cameras">
       <button class="iconButton collapseCategoryButton">Collapse</button>
@@ -255,6 +273,7 @@
     </section>
   </main>
 
+  <!-- Cart, which is initially hidden so you can't see it -->
   <aside class="cartContainer hidden">
     <div class="cart">
       <header class="cartHeader">
@@ -284,11 +303,12 @@
     </div>
   </aside>
 
+  <!-- Site footer with copyright statement -->
   <footer class="siteFooter">
     ©2018 Advanced Visualization Center - <a href="mailto:advancedvisualizationcenter@gmail.com">Contact Us</a>
   </footer>
 
-  <!-- JavaScript -->
+  <!-- JavaScript, which runs after the page loads -->
   <script src="check-inventory.js"></script>
   <script src="collapse-categories.js"></script>
   <script src="cart.js"></script>
