@@ -10,6 +10,8 @@
   --primary-color: rgba(21, 101, 192, 0.9);
   --inCart-color: rgba(46, 125, 50, 0.9);
   --disabled-color: rgba(55, 71, 79, 1);
+  --heading-font: "Comfortaa", "Helvetica", "Trebuchet MS", sans-serif;
+  --body-font: "var(--body-font)", "Trebuchet MS", "Helvetica", sans-serif;
 }
 
 body {
@@ -20,12 +22,13 @@ body {
 /* Large page header area: */
 
 .banner {
+  /* Center contents vertically and horizontally */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
   color: white;
+  /* Stacking backgrounds allows the color over the image */
   background: linear-gradient( var(--primary-color), var(--primary-color)), center 30% / cover no-repeat url(images/cover-image.jpg);
   padding: calc(5rem + 5vw) 2rem calc(3rem + 5vw);
 }
@@ -37,15 +40,15 @@ body {
 }
 
 .banner h1 {
-  font-family: Comfortaa;
-  font-weight: 400;
+  font-family: var(--heading-font);
+  font-weight: lighter;
   margin-top: 3rem;
   margin-bottom: 1rem;
   font-size: 2rem;
 }
 
 .banner .tagline {
-  font-family: Lato;
+  font-family: var(--body-font);
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 1rem;
@@ -54,23 +57,27 @@ body {
 /* Sticky navigation bar: */
 
 .banner nav {
+  /* Page positioning */
   position: fixed;
   z-index: 2;
   left: 0;
   right: 0;
   top: 0;
+
+  /* Internal positioning */
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0.5em calc((100vw - 70rem)/2);
+  
   background: var(--primary-color);
   box-shadow: 0 -0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.5);
-  padding: 0.5em calc((100vw - 70rem)/2);
-  align-items: center;
 }
 
 /* Site logo and "AVC": */
 
 .siteName {
-  font-family: Comfortaa;
+  font-family: var(--heading-font);
   text-decoration: none;
   color: white;
   font-weight: bold;
@@ -102,7 +109,7 @@ body {
 .shortcuts a {
   color: white;
   text-decoration: none;
-  font-family: lato;
+  font-family: var(--body-font);
   font-weight: bold;
 }
 
@@ -117,11 +124,12 @@ body {
   text-align: right;
 }
 
+/* This button style is also used in the cart close button */
 .toolBarTextButton {
   background: transparent;
   border: none;
   text-transform: uppercase;
-  font-family: Lato;
+  font-family: var(--body-font);
   font-weight: bold;
   letter-spacing: 1px;
   padding: 0.5rem;
@@ -180,6 +188,7 @@ main {
   height: 2rem;
   width: 2rem;
   cursor: pointer;
+
   /* Hide the text in the button: */
   text-indent: 200%;
   white-space: nowrap;
@@ -195,12 +204,13 @@ main {
 }
 
 .collapsed .collapseCategoryButton {
+  /* Flip the button when collapsed */
   transform: rotate(90deg);
 }
 
 .category h2 {
-  font-family: Comfortaa;
-  font-weight: 700;
+  font-family: var(--heading-font);
+  font-weight: bold;
   width: 100%;
   border-bottom: 2px solid var(--primary-color);
   letter-spacing: 2px;
@@ -228,12 +238,13 @@ main {
 }
 
 .item {
+  /* By default, show 4 items per row */
   width: calc(100% / 4 - 2rem);
   padding: 1rem;
   display: flex;
   flex-direction: column;
   margin: 0.5rem 1rem;
-  font-family: Lato;
+  font-family: var(--body-font);
 }
 
 .item.outOfStock {
@@ -241,7 +252,7 @@ main {
 }
 
 .itemName {
-  font-family: Comfortaa;
+  font-family: var(--heading-font);
   font-size: 1rem;
   font-weight: bold;
   margin-top: 1em;
@@ -269,10 +280,11 @@ main {
 
 .itemPrice {
   text-align: center;
-  font-weight: 700;
+  font-weight: bold;
   margin-bottom: 1rem;
 }
 
+/* This button style is used in the cart as well */
 .primaryButton {
   background-color: white;
   border-color: var(--primary-color);
@@ -296,6 +308,7 @@ main {
   opacity: 0.8;
 }
 
+/* This defines the animation that runs once when an item is added to the cart */
 @keyframes inCartButtonFade {
   0% {
     background-color: var(--primary-color);
@@ -340,6 +353,7 @@ main {
   display: none;
 }
 
+/* Provides the dark page overlay in the background */
 .cartContainer {
   position: fixed;
   top: 0;
@@ -360,7 +374,7 @@ main {
   background-color: white;
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
   z-index: 20;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
 }
@@ -374,8 +388,8 @@ main {
 
 .cart h2 {
   margin: 0;
-  font-family: Comfortaa;
-  font-weight: 700;
+  font-family: var(--heading-font);
+  font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
   font-size: 1.1rem;
@@ -407,6 +421,7 @@ main {
   flex: 1;
   padding: 0 1rem;
   height: 100%;
+  min-width: 10rem;
 }
 
 .cartItems .itemName,
@@ -420,8 +435,8 @@ main {
   font-size: 1rem;
   border: none;
   border-bottom: 1px solid var(--primary-color);
-  font-weight: 700;
-  font-family: Lato;
+  font-weight: bold;
+  font-family: var(--body-font);
   margin-bottom: 1px;
 }
 
@@ -458,7 +473,7 @@ main {
 .cart .totalCost {
   text-transform: uppercase;
   font-size: 1rem;
-  font-family: lato;
+  font-family: var(--body-font);
   padding: 1rem;
   align-self: flex-end;
 }
@@ -476,13 +491,16 @@ main {
   color: white;
   text-align: center;
   padding: 2rem;
-  font-family: lato;
+  font-family: var(--body-font);
 }
 
 .siteFooter a {
   color: white;
   text-decoration: underline;
 }
+
+/* These media queries are styles that only appear at certain screen sizes. They
+  allow us to support smaller screens like phones and tablets. */
 
 /* Switch to 3-column grid: */
 
@@ -492,7 +510,7 @@ main {
   }
 }
 
-/* Switch to two-column grid and more room in header;
+/* Switch to 2-column grid and more room in header;
 also, move navigation links to bottom of the screen: */
 
 @media only screen and (max-width: 45rem) {
@@ -529,9 +547,21 @@ also, move navigation links to bottom of the screen: */
   footer {
     padding-bottom: 7rem;
   }
+
+  .cartItems .itemDetails {
+    font-size: 0.8rem;
+  }
+
+  .cartItems .itemPrice {
+    font-size: 0.8rem;
+  }
+
+  .removeFromCartButton {
+    margin: 0;
+  }
 }
 
-/* Switch to single-column grid and make buttons touch-friendly: */
+/* Switch to 1-column grid and make buttons touch-friendly.*/
 
 @media only screen and (max-width: 30rem) {
   .item {
@@ -540,7 +570,7 @@ also, move navigation links to bottom of the screen: */
   .itemDescription {
     text-align: center;
   }
-  .addToCartButton {
+  .primaryButton {
     padding: 0.75rem 1.25rem;
   }
 }
