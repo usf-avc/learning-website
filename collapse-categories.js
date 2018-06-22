@@ -7,7 +7,7 @@
  * Collapse the section if it's not collapsed, or expand it if it is.
  * @param {HTMLSectionElement} sectionElement The section to collapse.
  */
-function toggleSectionCollapse(section) {
+function toggleSectionCollapse(sectionElement) {
   sectionElement.classList.toggle("collapsed");
 }
 
