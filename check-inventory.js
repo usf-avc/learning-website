@@ -231,6 +231,8 @@ function getItemElements() {
  * Update the inventory information on the page.
  */
 function updateInventoryInfo() {
+  console.group("updateInventoryInfo()");
+
   // We could wait and get the elements after recieving the data, but it's faster
   // to do it while waiting for the request, since we have to wait anyway.
   let itemsByCategory = getItemElements();
@@ -248,4 +250,6 @@ function updateInventoryInfo() {
       // Just in case anything goes wrong.
       console.error(error);
     });
+  
+    console.groupEnd();
 }
