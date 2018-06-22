@@ -19,7 +19,10 @@ body {
   justify-content: center;
   align-items: center;
 
-  padding: 100px 32px 70px;
+  padding-top: 100px;
+  padding-right: 32px;
+  padding-bottom: 70px;
+  padding-left: 32px;
 
   background-color: steelblue;
 
@@ -45,7 +48,6 @@ body {
 .banner .tagline {
   font-family: "Lato", "Trebuchet MS", "Helvetica", sans-serif;
   text-transform: uppercase;
-  letter-spacing: 2px;
   font-size: 16px;
 }
 
@@ -64,9 +66,13 @@ body {
   justify-content: space-between;
   align-items: center;
 
-  padding: 8px 32px;
+  padding-top: 8px;
+  padding-right: 32px;
+  padding-bottom: 8px;
+  padding-left: 32px;
   
   background: steelblue;
+  
   box-shadow: 0 -8px 8px 7px black;
 }
 
@@ -95,15 +101,6 @@ body {
 .shortcuts {
   display: flex;
   align-items: center;
-
-  list-style-type: none;
-
-  margin: 0;
-  padding: 0;
-}
-
-.shortcuts li {
-  padding: 0 12px;
 }
 
 .shortcuts a {
@@ -111,6 +108,9 @@ body {
   text-decoration: none;
   font-family: "Lato", "Trebuchet MS", "Helvetica", sans-serif;
   font-weight: bold;
+
+  padding-right: 12px;
+  padding-left: 12px;
 }
 
 .shortcuts a:hover {
@@ -130,7 +130,6 @@ body {
   text-transform: uppercase;
   font-family: "Lato", "Trebuchet MS", "Helvetica", sans-serif;
   font-weight: bold;
-  letter-spacing: 1px;
 
   padding: 8px;
 
@@ -140,7 +139,9 @@ body {
 
   /* Without a transparent border here, if a border shows up on hover it could
   mess up the layout */
-  border: 2px solid transparent;
+  border-width: 2px;
+  border-color: transparent;
+  border-style: solid;
   border-radius: 48px;
 
   transition: 0.2s border, 0.2s background-color;
@@ -171,7 +172,11 @@ body {
 main {
   max-width: 1184px;
 
-  padding: 0 32px 32px;
+  padding-right: 32px;
+  padding-bottom: 32px;
+  padding-left: 32px;
+
+  /* This is another way to center things but it only works sometimes */
   margin: auto;
 }
 
@@ -192,7 +197,11 @@ main {
 }
 
 .iconButton {
-  background: left center / contain no-repeat url(images/icons/chevron-right.svg);
+  background-position: left center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(images/icons/chevron-right.svg);
+  background-color: transparent;
 
   border: none;
 
@@ -208,13 +217,15 @@ main {
 }
 
 .collapseCategoryButton {
+  /* The icon is sideways; this turns it */
   transform: rotate(-90deg);
 
+  /* Position it just right in the category */
   position: absolute;
   top: 72px;
   left: 16px;
 
-  transition: 0.5s 0.5s transform;
+  transition: 0.5s transform;
 }
 
 .collapsed .collapseCategoryButton {
@@ -225,7 +236,6 @@ main {
 .category h2 {
   font-family: "Comfortaa", "Helvetica", "Trebuchet MS", sans-serif;
   font-weight: bold;
-  letter-spacing: 2px;
   text-align: center;
   text-transform: uppercase;
 
@@ -237,7 +247,7 @@ main {
   padding-top: 72px;
   margin-top: 0;
 
-  transition: 0.5s 0.5s border-color;
+  transition: 0.5s border-color;
 }
 
 .category.collapsed h2 {
@@ -259,7 +269,10 @@ main {
   /* By default, show 4 items per row */
   width: 25%;
 
-  padding: 24px 32px;
+  padding-top: 24px;
+  padding-left: 32px;
+  padding-bottom: 24px;
+  padding-right: 32px;
 
   display: flex;
   flex-direction: column;
@@ -277,15 +290,14 @@ main {
   font-weight: bold;
   text-align: center;
 
-  margin-top: 16px;
-  margin-bottom: 0;
+  margin-top: 24px;
+  margin-bottom: 8px;
 }
 
 .itemInStock {
   margin-top: 0;
-  padding-top: 0;
 
-  font-size: 13px;
+  font-size: 12px;
   text-align: center;
 }
 
@@ -293,8 +305,6 @@ main {
   width: 60%;
 
   align-self: center;
-
-  margin-bottom: 16px;
 }
 
 .itemDescription {
@@ -319,50 +329,28 @@ main {
   border-width: 2px;
   border-radius: 48px;
 
-  padding: 8px 16px;
+  padding-top: 8px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  padding-left: 16px;
 
   align-self: center;
 
   text-transform: uppercase;
   color: steelblue;
   font-weight: bold;
-  letter-spacing: 0.5px;
 
-  transition: 0.3s color, 0.3s background-color, 0.4s box-shadow;
+  transition: 0.5s color, 0.5s background-color, 0.5s box-shadow;
 }
 
 .inCart .addToCartButton:disabled {
-  background: white;
+  background-color: white;
 
   border-color: transparent;
 
   color: green;
 
   opacity: 0.8;
-
-  animation: inCartButtonFade 1s 1;
-}
-
-/* This defines the animation that runs once when an item is added to the cart */
-@keyframes inCartButtonFade {
-  0% {
-    background-color: steelblue;
-    border-color: steelblue;
-    color: white;
-    opacity: 1;
-  }
-  60% {
-    background-color: white;
-    color: steelblue;
-    border-color: steelblue;
-    opacity: 1;
-  }
-  100% {
-    background-color: white;
-    border-color: transparent;
-    color: green;
-    opacity: 0.8;
-  }
 }
 
 .primaryButton:disabled {
@@ -394,6 +382,7 @@ main {
 
 /* Provides the dark page overlay in the background */
 .cartContainer {
+  /* Stretch to cover the whole window */
   position: fixed;
   top: 0;
   left: 0;
@@ -402,6 +391,10 @@ main {
   z-index: 19;
 
   box-shadow: 0 -8px 8px 7px black;
+
+  /* This is a special color format that is partially transparent, so we can
+    still see the page behind. */
+  background-color: rgba(0, 0, 0, 0.4);
 
   display: flex;
   align-items: center;
@@ -417,7 +410,7 @@ main {
 
   box-shadow: 0 4px 15px black;
 
-  z-index: 20;
+  z-index: 4;
 
   border-radius: 8px;
 
@@ -438,12 +431,14 @@ main {
 
   font-family: "Comfortaa", "Helvetica", "Trebuchet MS", sans-serif;
   font-weight: bold;
-  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .cartItems {
-  padding: 0 32px;
+  padding-top: 0;
+  padding-right: 32px;
+  padding-bottom: 0;
+  padding-left: 32px;
 
   position: relative;
   flex: 1;
@@ -465,12 +460,14 @@ main {
 }
 
 .cartItems .itemImage {
-  height: 128px;
-  width: 128px;
+  height: 80px;
+  width: 80px;
+  margin: 16px;
 }
 
 .cartItems .itemDetails {
-  padding: 0 16px;
+  padding-right: 16px;
+  padding-left: 16px;
 
   flex: 1;
   height: 100%;
@@ -505,7 +502,10 @@ main {
   text-align: center;
   font-size: 19px;
 
-  margin: 0 19px;
+  margin-top: 0;
+  margin-right: 19px;
+  margin-bottom: 0;
+  margin-left: 19px;
 }
 
 .cartItems .removeFromCartButton {
@@ -513,7 +513,8 @@ main {
 
   background-image: url(images/icons/x.svg);
 
-  margin: 0 19px;
+  margin-right: 19px;
+  margin-left: 19px;
 }
 
 .cart .noItems {
@@ -525,7 +526,10 @@ main {
 }
 
 .cartFooter {
-  padding: 16px 32px;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
 
   text-align: center;
 
@@ -547,7 +551,8 @@ main {
   font-weight: bold;
   font-size: 24px;
 
-  padding: 0 32px 0 16px;
+  padding-right: 32px;
+  padding-left: 16px;
 }
 
 /* Footer: */
@@ -604,7 +609,10 @@ main {
 
 @media only screen and (max-width: 700px) {
   .banner {
-    padding: 135px 32px 105px;
+    padding-top: 135px;
+    padding-right: 32px;
+    padding-bottom: 105px;
+    padding-left: 32px;
   }
 
   .item {
@@ -616,11 +624,13 @@ main {
   }
 
   .cartItems {
-    padding: 0 8px;
+    padding-right: 8px;
+    padding-left: 8px;
   }
 
   .cartItems .itemPrice {
-    margin: 0 3px;
+    margin-right: 3px;
+    margin-left: 3px;
   }
 
   footer {
@@ -646,12 +656,15 @@ main {
   .item {
     width: 100%;
   }
-  
+
   .itemDescription {
     text-align: center;
   }
-  
+
   .primaryButton {
-    padding: 12px 20px;
+    padding-top: 12px;
+    padding-right: 20px;
+    padding-bottom: 12px;
+    padding-left: 20px;
   }
 }
