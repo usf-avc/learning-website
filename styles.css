@@ -139,7 +139,7 @@ body {
 }
 
 .openCartButton:hover, .openCartButton:focus {
-  border-color: 2px solid white;
+  border-color: white;
 }
 
 .toolBarTextButton:active {
@@ -331,6 +331,10 @@ main {
 }
 
 /* Cart: */
+.cartContainer.hidden {
+  display: none;
+}
+
 .cartContainer {
   position: fixed;
   top: 0;
@@ -376,7 +380,7 @@ main {
   flex: 1;
   padding: 0 2rem;
   position: relative;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .cartItems .item {
@@ -385,6 +389,11 @@ main {
   padding: 0;
   margin: 0;
   align-items: center;
+}
+
+.cartItems .itemImage {
+  height: 8rem;
+  width: 8rem;
 }
 
 .cartItems .itemDetails {

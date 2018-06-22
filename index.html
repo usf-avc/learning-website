@@ -23,7 +23,7 @@
      * @property {string} outOfCart When the item is not in the cart.
      * @property {string} outOfStock When the item is out of stock.
      */
-    const addToCartButton primaryButtonText = {
+    const addToCartButtonText = {
       inCart: "Added to Cart",
       outOfCart: "Add to Cart",
       outOfStock: "Out of Stock"
@@ -35,8 +35,9 @@
       console.log("Page loaded.");
 
       initializeCategoryCollapsing();
-      updateInventoryInfo();
       initializeCart();
+      updateInventoryInfo();
+      
     });
   </script>
 </head>
@@ -76,7 +77,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">Whether raising your game to SLR level photography or having fun with a feature-rich, versatile SLR you can use pretty much anywhere, the EOS 80D camera is your answer.</p>
-          <div class="itemPrice">$999.00</div>
+          <div class="itemPrice">$<span class="priceNumber">999.00</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -87,7 +88,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">The camera with the quality your photos deserve, the EOS Rebel T6 can be ideal for smartphone or digital point-and-shoot camera users looking to step up their imaging game.</p>
-          <div class="itemPrice">$549.99</div>
+          <div class="itemPrice">$<span class="priceNumber">549.99</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -98,7 +99,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">Designed to make high quality imaging simple and fun, the EOS Rebel T6s camera is the most sophisticated Rebel ever.</p>
-          <div class="itemPrice">$1,199.00</div>
+          <div class="itemPrice">$<span class="priceNumber">1,199.00</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -109,7 +110,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">From still images to long movies (max. 25 minutes long), record your memories in a vivid, high resolution 360° world.</p>
-          <div class="itemPrice">$235.33</div>
+          <div class="itemPrice">$<span class="priceNumber">235.33</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -120,7 +121,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">The Gear 360 has evolved to let you record in 4K or broadcast live, and then make it your own with the Samsung Gear 360 app.</p>
-          <div class="itemPrice">$229.99</div>
+          <div class="itemPrice">$<span class="priceNumber">229.99</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -131,7 +132,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">HERO4 Black takes Emmy Award-winning GoPro performance to the next level with our best image quality yet, plus a 2x more powerful processor that delivers super slow motion at 240 frames per second.</p>
-          <div class="itemPrice">$179.00</div>
+          <div class="itemPrice">$<span class="priceNumber">179.00</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -150,7 +151,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">Designed to exceed expectations and ideal for video and still images alike, the new EF-S 18-135mm f/3.5-5.6 IS STM marks a new standard for EF-S lenses.</p>
-          <div class="itemPrice">$549.99</div>
+          <div class="itemPrice">$<span class="priceNumber">549.99</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -161,7 +162,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">For photographers and videographers looking to add versatility and range to their lens collection, the new EF-S 55-250mm f/4-5.6 IS STM telephoto zoom lens is a dream come true.</p>
-          <div class="itemPrice">$299.99</div>
+          <div class="itemPrice">$<span class="priceNumber">299.99</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -172,7 +173,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">Regardless if you're a casual photographer/videographer or a serious "prosumer" there's a Polaroid tripod designed with your needs in mind.</p>
-          <div class="itemPrice">$21.40</div>
+          <div class="itemPrice">$<span class="priceNumber">21.40</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -183,7 +184,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">Add some more light to your scene with the PL-ASF18 Studio Series Pro Slave Flash from Polaroid, featuring a guide number of 46' at ISO 100.</p>
-          <div class="itemPrice">$11.99</div>
+          <div class="itemPrice">$<span class="priceNumber">11.99</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -202,7 +203,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">VIVE gives you an unparalleled, true-to-life virtual reality experience. Using a headset and wireless controllers, you can explore and interact with VR experiences, apps and games that blur the line between imagination and reality.</p>
-          <div class="itemPrice">$498.40</div>
+          <div class="itemPrice">$<span class="priceNumber">498.40</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -213,7 +214,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">Easily enter virtual reality with no PC or wires attached. Oculus Go is a Standalone VR headset made to fit you.</p>
-          <div class="itemPrice">$199.00</div>
+          <div class="itemPrice">$<span class="priceNumber">199.00</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -224,7 +225,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">Rift is unlike anything you've ever experienced. Whether you're stepping into your favorite game, watching an immersive VR movie, jumping to a destination on the other side of the world, or just spending time with friends in VR, you'll feel like you're really there.</p>
-          <div class="itemPrice">$399.00</div>
+          <div class="itemPrice">$<span class="priceNumber">399.00</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -243,7 +244,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">G3s adopts a 32-bit MCU chip, computing capability is up to 48 million times per second.</p>
-          <div class="itemPrice">$32.99</div>
+          <div class="itemPrice">$<span class="priceNumber">32.99</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -254,7 +255,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">Get started developing with Leap Motion technology today – use our standalone controller or add a Universal VR Developer Mount for hands in VR.</p>
-          <div class="itemPrice">$79.99</div>
+          <div class="itemPrice">$<span class="priceNumber">79.99</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -265,7 +266,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">Designed for the PC gamer looking for an advanced console-style controller.</p>
-          <div class="itemPrice">$49.99</div>
+          <div class="itemPrice">$<span class="priceNumber">49.99</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -276,7 +277,7 @@
             <strong class="inStockCount">…</strong> <span class="inStockText">items in stock</span>
           </p>
           <p class="itemDescription">The Myo armband is a wearable gesture control and motion control device that lets you take control of your phone, computer, and so much more, touch-free.</p>
-          <div class="itemPrice">$199.00</div>
+          <div class="itemPrice">$<span class="priceNumber">199.00</span></div>
           <button class="addToCartButton primaryButton">Add to Cart</button>
         </div>
 
@@ -284,11 +285,11 @@
     </section>
   </main>
 
-  <aside class="cartContainer">
+  <aside class="cartContainer hidden">
     <div class="cart">
       <header class="cartHeader">
         <h2>Your Cart</h2>
-        <button class="cartCloseButton toolBarTextButton">Close</button>
+        <button class="closeCartButton toolBarTextButton">Close</button>
       </header>
       <div class="cartItems">
         <div class="item" id="myo-armband">
