@@ -19,8 +19,9 @@ body {
   align-items: center;
   color: white;
   /* Stacking backgrounds allows the color over the image */
-  background: linear-gradient( rgba(21, 101, 192, 0.9), rgba(21, 101, 192, 0.9)), center 30% / cover no-repeat url(images/cover-image.jpg);
-  padding: calc(80px + 5vw) 32px calc(48px + 5vw);
+  background: linear-gradient(rgba(21, 101, 192, 0.9), rgba(21, 101, 192, 0.9)), 
+              center 30% / cover no-repeat url(images/cover-image.jpg);
+  padding: 100px 32px 70px;
 }
 
 .largeLogo {
@@ -58,10 +59,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5em calc((100vw - 1120px)/2);
+  padding: 8px 32px;
   
   background: rgba(21, 101, 192, 0.9);
-  box-shadow: 0 -0.16px 8px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 -3px 8px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* Site logo and "AVC": */
@@ -125,7 +126,7 @@ body {
   padding: 8px;
   cursor: pointer;
   border: 2px solid transparent;
-  border-radius: 3em;
+  border-radius: 48px;
   transition: 0.2s ease border, 0.1s ease background;
 }
 
@@ -229,11 +230,10 @@ main {
 
 .item {
   /* By default, show 4 items per row */
-  width: calc(100% / 4 - 32px);
-  padding: 16px;
+  width: 25%;
+  padding: 24px 32px;
   display: flex;
   flex-direction: column;
-  margin: 8px 16px;
   font-family: "Lato", "Trebuchet MS", "Helvetica", sans-serif;
 }
 
@@ -358,8 +358,8 @@ main {
 }
 
 .cart {
-  height: 80vh;
-  width: 80vw;
+  height: 80%;
+  width: 80%;
   max-width: 800px;
   background-color: white;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
@@ -419,7 +419,7 @@ main {
 }
 
 .cartItems .amountInCart {
-  width: 6ch;
+  width: 40px;
   text-align: center;
   font-size: 16px;
   border: none;
@@ -491,23 +491,11 @@ main {
 /* These media queries are styles that only appear at certain screen sizes. They
   allow us to support smaller screens like phones and tablets. */
 
-/* Switch to 3-column grid: */
+/* Switch to 3-column grid and move shortcuts to bottom */
 
 @media only screen and (max-width: 960px) {
   .item {
-    width: calc(100% / 3 - 32px);
-  }
-}
-
-/* Switch to 2-column grid and more room in header;
-also, move navigation links to bottom of the screen: */
-
-@media only screen and (max-width: 480px) {
-  .banner {
-    padding: calc(112px + 5vw) 32px calc(80px + 5vw);
-  }
-  .item {
-    width: calc(100% / 2 - 32px);
+    width: 33%;
   }
   .shortcuts {
     position: fixed;
@@ -515,7 +503,7 @@ also, move navigation links to bottom of the screen: */
     left: 0;
     right: 0;
     background-color: white;
-    box-shadow: 0 0.16px 8px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 8px 3px rgba(0, 0, 0, 0.5);
     padding: 16px;
     justify-content: space-evenly;
     text-align: center;
@@ -523,6 +511,17 @@ also, move navigation links to bottom of the screen: */
   }
   .shortcuts a {
     color: rgba(21, 101, 192, 0.9);
+  }
+}
+
+/* Switch to 2-column grid and more room in header */
+
+@media only screen and (max-width: 700px) {
+  .banner {
+    padding: 135px 32px 105px;
+  }
+  .item {
+    width: 50%;
   }
   .cartItems .itemImage {
     display: none;
@@ -554,7 +553,7 @@ also, move navigation links to bottom of the screen: */
 
 @media only screen and (max-width: 480px) {
   .item {
-    width: calc(100% - 32px);
+    width: 100%;
   }
   .itemDescription {
     text-align: center;
