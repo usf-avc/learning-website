@@ -101,7 +101,7 @@ function toggleCart() {
  * @returns {string} The number, with two decimal places.
  */
 function formatWithTwoDecimalPlaces(number) {
-  return Number.parseFloat(number).toFixed(2);
+  return Number(number).toFixed(2);
 }
 
 /**
@@ -149,7 +149,6 @@ function buildCart() {
   // Find the total cost element:
   let totalCostElement = cartItemsContainer.parentElement.querySelector(".totalCostNumber");
   // Round and add the total cost:
-  console.log(totalCost);
   totalCost = totalCost;
   totalCostElement.textContent = formatWithTwoDecimalPlaces(totalCost);
 
