@@ -10,36 +10,6 @@
 
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700|Lato:400,700" rel="stylesheet"> 
-  
-  <script src="check-inventory.js"></script>
-  <script src="collapse-categories.js"></script>
-  <script src="cart.js"></script>
-  <script>
-    /**
-     * The text to change the button text to under certain circumstances. Used
-     * by several functions.
-     * @type {Object}
-     * @property {string} inCart When the item is in the cart.
-     * @property {string} outOfCart When the item is not in the cart.
-     * @property {string} outOfStock When the item is out of stock.
-     */
-    const addToCartButtonText = {
-      inCart: "Added to Cart",
-      outOfCart: "Add to Cart",
-      outOfStock: "Out of Stock"
-    }
-
-    // Once all of the HTML and CSS has loaded, we can start reading and modifying
-    // the contents of the page.
-    window.addEventListener("load", function() {
-      console.log("Page loaded.");
-
-      initializeCategoryCollapsing();
-      initializeCart();
-      updateInventoryInfo();
-      
-    });
-  </script>
 </head>
 <body>
   <header class="banner">
@@ -317,5 +287,36 @@
   <footer class="siteFooter">
     ©2018 Advanced Visualization Center - <a href="mailto:advancedvisualizationcenter@gmail.com">Contact Us</a>
   </footer>
+
+  <!-- JavaScript -->
+  <script src="check-inventory.js"></script>
+  <script src="collapse-categories.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    /**
+     * The text to change the button text to under certain circumstances. Used
+     * by several functions.
+     * @type {Object}
+     * @property {string} inCart When the item is in the cart.
+     * @property {string} outOfCart When the item is not in the cart.
+     * @property {string} outOfStock When the item is out of stock.
+     */
+    const addToCartButtonText = {
+      inCart: "Added to Cart",
+      outOfCart: "Add to Cart",
+      outOfStock: "Out of Stock"
+    }
+
+    // Once all of the HTML and CSS has loaded, we can start reading and modifying
+    // the contents of the page.
+    window.addEventListener("load", function() {
+      console.log("Page loaded.");
+
+      initializeCategoryCollapsing();
+      initializeCart();
+      updateInventoryInfo();
+      
+    });
+  </script>
 </body>
 </html>
