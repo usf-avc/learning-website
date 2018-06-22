@@ -11,7 +11,7 @@
   --inCart-color: rgba(46, 125, 50, 0.9);
   --disabled-color: rgba(55, 71, 79, 1);
   --heading-font: "Comfortaa", "Helvetica", "Trebuchet MS", sans-serif;
-  --body-font: "var(--body-font)", "Trebuchet MS", "Helvetica", sans-serif;
+  --body-font: "Lato", "Trebuchet MS", "Helvetica", sans-serif;
 }
 
 body {
