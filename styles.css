@@ -1,6 +1,7 @@
 /* Site-wide styles: */
 
 * {
+  /* This rule makes sizing much simpler and more predictable */
   box-sizing: border-box;
 }
 
@@ -17,24 +18,28 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
-  /* Stacking backgrounds allows the color over the image */
-  background-color: steelblue;
+
   padding: 100px 32px 70px;
+
+  background-color: steelblue;
+
+  color: white;
 }
 
 .largeLogo {
   height: auto;
   width: 144px;
+  /* This logo can never take up more than 40% of the width */
   max-width: 40%;
 }
 
 .banner h1 {
   font-family: "Comfortaa", "Helvetica", "Trebuchet MS", sans-serif;
   font-weight: lighter;
+  font-size: 32px;
+
   margin-top: 48px;
   margin-bottom: 16px;
-  font-size: 32px;
 }
 
 .banner .tagline {
@@ -58,6 +63,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   padding: 8px 32px;
   
   background: steelblue;
@@ -71,6 +77,7 @@ body {
   text-decoration: none;
   color: white;
   font-weight: bold;
+
   display: flex;
   align-items: flex-end;
   flex: 1;
@@ -79,17 +86,20 @@ body {
 .smallLogo {
   height: 24px;
   width: auto;
+
   margin: 0 16px;
 }
 
 /* Navigation menu: */
 
 .shortcuts {
-  list-style-type: none;
   display: flex;
+  align-items: center;
+
+  list-style-type: none;
+
   margin: 0;
   padding: 0;
-  align-items: center;
 }
 
 .shortcuts li {
@@ -111,28 +121,34 @@ body {
 
 .cartButtonContainer {
   flex: 1;
+
   text-align: right;
 }
 
 /* This button style is also used in the cart close button */
 .toolBarTextButton {
-  background-color: transparent;
-  border: none;
   text-transform: uppercase;
   font-family: "Lato", "Trebuchet MS", "Helvetica", sans-serif;
   font-weight: bold;
   letter-spacing: 1px;
+
   padding: 8px;
+
   cursor: pointer;
+
+  background-color: transparent;
+
   /* Without a transparent border here, if a border shows up on hover it could
   mess up the layout */
   border: 2px solid transparent;
   border-radius: 48px;
+
   transition: 0.2s border, 0.2s background-color;
 }
 
 .openCartButton {
   color: white;
+
   margin-right: 16px;
 }
 
@@ -153,14 +169,19 @@ body {
 /* Main content area: */
 
 main {
-  padding: 0 32px 32px;
   max-width: 1184px;
+
+  padding: 0 32px 32px;
   margin: auto;
 }
 
 .category {
+  /* Without position:relative, the position of the collapse button will relative
+    to the page, instead of the category */
   position: relative;
+
   overflow: hidden;
+
   transition: 0.5s height;
 }
 
@@ -172,9 +193,12 @@ main {
 
 .iconButton {
   background: left center / contain no-repeat url(images/icons/chevron-right.svg);
+
   border: none;
+
   height: 32px;
   width: 32px;
+
   cursor: pointer;
 
   /* Hide the text in the button: */
@@ -185,10 +209,12 @@ main {
 
 .collapseCategoryButton {
   transform: rotate(-90deg);
-  transition: 0.5s 0.5s transform;
+
   position: absolute;
   top: 72px;
   left: 16px;
+
+  transition: 0.5s 0.5s transform;
 }
 
 .collapsed .collapseCategoryButton {
@@ -199,14 +225,18 @@ main {
 .category h2 {
   font-family: "Comfortaa", "Helvetica", "Trebuchet MS", sans-serif;
   font-weight: bold;
-  width: 100%;
-  border-bottom: 2px solid steelblue;
   letter-spacing: 2px;
-  padding-bottom: 16px;
   text-align: center;
   text-transform: uppercase;
+
+  border-bottom: 2px solid steelblue;
+
+  width: 100%;
+  
+  padding-bottom: 16px;
   padding-top: 72px;
   margin-top: 0;
+
   transition: 0.5s 0.5s border-color;
 }
 
@@ -228,9 +258,12 @@ main {
 .item {
   /* By default, show 4 items per row */
   width: 25%;
+
   padding: 24px 32px;
+
   display: flex;
   flex-direction: column;
+
   font-family: "Lato", "Trebuchet MS", "Helvetica", sans-serif;
 }
 
@@ -242,57 +275,72 @@ main {
   font-family: "Comfortaa", "Helvetica", "Trebuchet MS", sans-serif;
   font-size: 16px;
   font-weight: bold;
+  text-align: center;
+
   margin-top: 16px;
   margin-bottom: 0;
-  text-align: center;
 }
 
 .itemInStock {
   margin-top: 0;
   padding-top: 0;
+
   font-size: 13px;
   text-align: center;
 }
 
 .itemImage {
   width: 60%;
+
   align-self: center;
+
   margin-bottom: 16px;
 }
 
 .itemDescription {
   flex-grow: 1;
+
   margin-top: 0;
 }
 
 .itemPrice {
   text-align: center;
   font-weight: bold;
+
   margin-bottom: 16px;
 }
 
 /* This button style is used in the cart as well */
 .primaryButton {
   background-color: white;
+
   border-color: steelblue;
   border-style: solid;
   border-width: 2px;
-  padding: 8px 16px;
   border-radius: 48px;
+
+  padding: 8px 16px;
+
   align-self: center;
+
   text-transform: uppercase;
   color: steelblue;
   font-weight: bold;
-  transition: 0.3s color, 0.3s background-color, 0.4s box-shadow;
   letter-spacing: 0.5px;
+
+  transition: 0.3s color, 0.3s background-color, 0.4s box-shadow;
 }
 
 .inCart .addToCartButton:disabled {
-  animation: inCartButtonFade 1s 1;
   background: white;
+
   border-color: transparent;
+
   color: green;
+
   opacity: 0.8;
+
+  animation: inCartButtonFade 1s 1;
 }
 
 /* This defines the animation that runs once when an item is added to the cart */
@@ -319,14 +367,18 @@ main {
 
 .primaryButton:disabled {
   border-color: transparent;
+
   color: gray;
 }
 
 .primaryButton:not(:disabled):hover,
 .primaryButton:not(:disabled):focus {
   background-color: steelblue;
+
   color: white;
+
   box-shadow: 0 1px 4px black;
+
   cursor: pointer;
 }
 
@@ -347,8 +399,10 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  box-shadow: 0 -8px 8px 7px black;
   z-index: 19;
+
+  box-shadow: 0 -8px 8px 7px black;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -358,16 +412,22 @@ main {
   height: 80%;
   width: 80%;
   max-width: 800px;
+
   background-color: white;
+
   box-shadow: 0 4px 15px black;
+
   z-index: 20;
+
   border-radius: 8px;
+
   display: flex;
   flex-direction: column;
 }
 
 .cartHeader {
   padding: 16px 32px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -375,6 +435,7 @@ main {
 
 .cart h2 {
   margin: 0;
+
   font-family: "Comfortaa", "Helvetica", "Trebuchet MS", sans-serif;
   font-weight: bold;
   letter-spacing: 2px;
@@ -382,19 +443,24 @@ main {
 }
 
 .cartItems {
-  flex: 1;
   padding: 0 32px;
+
   position: relative;
+  flex: 1;
+
   overflow-y: scroll;
+
   display: flex;
   flex-direction: column;
 }
 
 .cartItems .item {
-  flex-direction: row;
   width: 100%;
+
   padding: 0;
   margin: 0;
+
+  flex-direction: row;
   align-items: center;
 }
 
@@ -404,8 +470,9 @@ main {
 }
 
 .cartItems .itemDetails {
-  flex: 1;
   padding: 0 16px;
+
+  flex: 1;
   height: 100%;
   min-width: 160px;
 }
@@ -417,13 +484,16 @@ main {
 
 .cartItems .amountInCart {
   width: 40px;
-  text-align: center;
-  font-size: 16px;
+
+  margin-bottom: 1px;
+
   border: none;
   border-bottom: 1px solid steelblue;
+
+  text-align: center;
   font-weight: bold;
   font-family: "Lato", "Trebuchet MS", "Helvetica", sans-serif;
-  margin-bottom: 1px;
+  font-size: 16px;
 }
 
 .cartItems .amountInCart:hover,
@@ -434,24 +504,31 @@ main {
 .cartItems .itemTotalPrice {
   text-align: center;
   font-size: 19px;
+
   margin: 0 19px;
 }
 
 .cartItems .removeFromCartButton {
   align-self: center;
+
   background-image: url(images/icons/x.svg);
+
   margin: 0 19px;
 }
 
 .cart .noItems {
   font-style: italic;
+
   justify-content: center;
+
   flex-grow: 1;
 }
 
 .cartFooter {
   padding: 16px 32px;
+
   text-align: center;
+
   display: flex;
   flex-direction: column;
 }
@@ -460,13 +537,16 @@ main {
   text-transform: uppercase;
   font-size: 16px;
   font-family: "Lato", "Trebuchet MS", "Helvetica", sans-serif;
+
   padding: 16px;
+
   align-self: flex-end;
 }
 
 .cart .totalCost span {
   font-weight: bold;
   font-size: 24px;
+
   padding: 0 32px 0 16px;
 }
 
@@ -474,10 +554,12 @@ main {
 
 .siteFooter {
   background-color: steelblue;
+
   color: white;
   text-align: center;
-  padding: 32px;
   font-family: "Lato", "Trebuchet MS", "Helvetica", sans-serif;
+  
+  padding: 32px;
 }
 
 .siteFooter a {
@@ -494,18 +576,25 @@ main {
   .item {
     width: 33%;
   }
+
   .shortcuts {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
+
     background-color: white;
+
     box-shadow: 0 8px 8px 7px black;
+
     padding: 16px;
+
     justify-content: space-evenly;
-    text-align: center;
     overflow-x: scroll;
+
+    text-align: center;
   }
+
   .shortcuts a {
     color: steelblue;
   }
@@ -517,18 +606,23 @@ main {
   .banner {
     padding: 135px 32px 105px;
   }
+
   .item {
     width: 50%;
   }
+
   .cartItems .itemImage {
     display: none;
   }
+
   .cartItems {
     padding: 0 8px;
   }
+
   .cartItems .itemPrice {
     margin: 0 3px;
   }
+
   footer {
     padding-bottom: 112px;
   }
@@ -552,9 +646,11 @@ main {
   .item {
     width: 100%;
   }
+  
   .itemDescription {
     text-align: center;
   }
+  
   .primaryButton {
     padding: 12px 20px;
   }
