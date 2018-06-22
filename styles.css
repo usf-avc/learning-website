@@ -1,8 +1,10 @@
-
 /* Site-wide styles: */
+
 * {
   box-sizing: border-box;
 }
+
+/* Set variables to use on the rest of the site */
 
 :root {
   --primary-color: rgba(21, 101, 192, 0.9);
@@ -15,7 +17,8 @@ body {
   margin: 0;
 }
 
-/* Blue page header area: */
+/* Large page header area: */
+
 .banner {
   display: flex;
   flex-direction: column;
@@ -23,12 +26,7 @@ body {
   align-items: center;
   text-align: center;
   color: white;
-  background:
-    linear-gradient(
-      var(--primary-color), 
-      var(--primary-color)
-    ), 
-    center 30% / cover no-repeat url(images/cover-image.jpg);
+  background: linear-gradient( var(--primary-color), var(--primary-color)), center 30% / cover no-repeat url(images/cover-image.jpg);
   padding: calc(5rem + 5vw) 2rem calc(3rem + 5vw);
 }
 
@@ -54,6 +52,7 @@ body {
 }
 
 /* Sticky navigation bar: */
+
 .banner nav {
   position: fixed;
   z-index: 2;
@@ -63,12 +62,13 @@ body {
   display: flex;
   justify-content: space-between;
   background: var(--primary-color);
-  box-shadow: 0 -0.1rem 0.5rem 0.2rem rgba(0,0,0, 0.5);
+  box-shadow: 0 -0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.5);
   padding: 0.5em calc((100vw - 70rem)/2);
   align-items: center;
 }
 
 /* Site logo and "AVC": */
+
 .siteName {
   font-family: Comfortaa;
   text-decoration: none;
@@ -86,6 +86,7 @@ body {
 }
 
 /* Navigation menu: */
+
 .shortcuts {
   list-style-type: none;
   display: flex;
@@ -110,6 +111,7 @@ body {
 }
 
 /* Cart button: */
+
 .cartButtonContainer {
   flex: 1;
   text-align: right;
@@ -134,23 +136,26 @@ body {
   margin-right: 1rem;
 }
 
-.toolBarTextButton:hover, .toolBarTextButton:focus {
+.toolBarTextButton:hover,
+.toolBarTextButton:focus {
   border-color: black;
 }
 
-.openCartButton:hover, .openCartButton:focus {
+.openCartButton:hover,
+.openCartButton:focus {
   border-color: white;
 }
 
 .toolBarTextButton:active {
-  background-color: rgba(0,0,0,0.2)
+  background-color: rgba(0, 0, 0, 0.2)
 }
 
 .openCartButton:active {
-  background-color: rgba(255,255,255,0.2)
+  background-color: rgba(255, 255, 255, 0.2)
 }
 
 /* Main content area: */
+
 main {
   padding: 0 2rem 2rem;
   max-width: 74rem;
@@ -216,6 +221,7 @@ main {
 }
 
 /* Shop items: */
+
 .itemGrid {
   display: flex;
   flex-wrap: wrap;
@@ -251,11 +257,9 @@ main {
 }
 
 .itemImage {
-  width: 80%;
-  max-width: 9rem;
-  height: auto;
+  width: 60%;
   align-self: center;
-  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 .itemDescription {
@@ -322,7 +326,7 @@ main {
 .primaryButton:not(:disabled):focus {
   background-color: var(--primary-color);
   color: white;
-  box-shadow: 0 2px 0.5rem rgba(0,0,0,0.4);
+  box-shadow: 0 2px 0.5rem rgba(0, 0, 0, 0.4);
   cursor: pointer;
 }
 
@@ -331,6 +335,7 @@ main {
 }
 
 /* Cart: */
+
 .cartContainer.hidden {
   display: none;
 }
@@ -341,7 +346,7 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 19;
   display: flex;
   align-items: center;
@@ -353,7 +358,7 @@ main {
   width: 80vw;
   max-width: 50rem;
   background-color: white;
-  box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.4);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
   z-index: 20;
   border-radius: .5rem;
   display: flex;
@@ -404,7 +409,8 @@ main {
   height: 100%;
 }
 
-.cartItems .itemName, .cartItems .itemPrice {
+.cartItems .itemName,
+.cartItems .itemPrice {
   text-align: left;
 }
 
@@ -419,7 +425,8 @@ main {
   margin-bottom: 1px;
 }
 
-.cartItems .amountInCart:hover, .cartItems .amountInCart:focus {
+.cartItems .amountInCart:hover,
+.cartItems .amountInCart:focus {
   border-bottom-width: 2px;
 }
 
@@ -463,6 +470,7 @@ main {
 }
 
 /* Footer: */
+
 .siteFooter {
   background-color: var(--primary-color);
   color: white;
@@ -477,6 +485,7 @@ main {
 }
 
 /* Switch to 3-column grid: */
+
 @media only screen and (max-width: 60rem) {
   .item {
     width: calc(100% / 3 - 2rem);
@@ -485,59 +494,52 @@ main {
 
 /* Switch to two-column grid and more room in header;
 also, move navigation links to bottom of the screen: */
+
 @media only screen and (max-width: 45rem) {
   .banner {
     padding: calc(7rem + 5vw) 2rem calc(5rem + 5vw);
   }
-
   .item {
     width: calc(100% / 2 - 2rem);
   }
-
   .shortcuts {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     background-color: white;
-    box-shadow: 0 0.1rem 0.5rem 0.2rem rgba(0,0,0, 0.5);
+    box-shadow: 0 0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.5);
     padding: 1rem;
     justify-content: space-evenly;
     text-align: center;
     overflow-x: scroll;
   }
-
   .shortcuts a {
     color: var(--primary-color);
   }
-
   .cartItems .itemImage {
     display: none;
   }
-
   .cartItems {
     padding: 0 .5rem;
   }
-
   .cartItems .itemPrice {
     margin: 0 0.2rem;
   }
-
   footer {
     padding-bottom: 7rem;
   }
 }
 
 /* Switch to single-column grid and make buttons touch-friendly: */
+
 @media only screen and (max-width: 30rem) {
   .item {
     width: calc(100% - 2rem);
   }
-
   .itemDescription {
     text-align: center;
   }
-
   .addToCartButton {
     padding: 0.75rem 1.25rem;
   }
