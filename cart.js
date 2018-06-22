@@ -103,28 +103,42 @@ function buildCart() {
 
   let html = ``;
 
-  cart.forEach(function(item) {
-    let totalItemPrice = item.pricePerItem * item.amountInCart;
-    console.log(item);
+  if(cart.length != 0) {
+    // If there are some items in the cart
 
-    let itemHTML = `
-    <div class="item">
-      <img class="itemImage" src="${item.image}">
-      <div class="itemDetails">
-        <h3 class="itemName">${item.name}</h3>
-        <p class="priceInfo">
-          <span class="itemPrice">$${item.pricePerItem}</span> × 
-          <input type="number" min="1" max="${item.amountInStock}" data-id="${item.id}" aria-label="Amount in Cart" class="amountInCart" value="${item.amountInCart}"> in cart
-        </p>
-      </div>
-      <div class="itemPrice itemTotalPrice">
-        $${totalItemPrice}
-      </div>
-      <button class="removeFromCartButton iconButton" data-id="${item.id}">Remove From Cart</button>
-    </div>`;
+    // Create total cost variable
+    let totalCost = 0;
 
-    html += itemHTML;
-  });
+    // Add each item to the cart as new HTML
+    cart.forEach(function(item) {
+      let totalItemPrice = item.pricePerItem * item.amountInCart;
+      totalCost += totalItemPrice;
+
+      let itemHTML = `
+      <div class="item">
+        <img class="itemImage" src="${item.image}">
+        <div class="itemDetails">
+          <h3 class="itemName">${item.name}</h3>
+          <p class="priceInfo">
+            <span class="itemPrice">$${item.pricePerItem}</span> × 
+            <input type="number" min="1" max="${item.amountInStock}" data-id="${item.id}" aria-label="Amount in Cart" class="amountInCart" value="${item.amountInCart}"> in cart
+          </p>
+        </div>
+        <div class="itemPrice itemTotalPrice">
+          $${totalItemPrice}
+        </div>
+        <button class="removeFromCartButton iconButton" data-id="${item.id}">Remove From Cart</button>
+      </div>`;
+
+      html += itemHTML;
+    });
+
+    // Add the total cost:
+    html += `<div class="item totalCost">Total: <span>$${totalCost}</span></div>`;
+  } else {
+    // If there are no items in the cart:
+    html = `<div class="item noItems"><span>There are no items in your cart yet. Go add some!</span></div>`;
+  }
 
   cartItemsContainer.innerHTML = html;
 
