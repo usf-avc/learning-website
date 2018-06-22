@@ -95,7 +95,7 @@ function getInventoryData() {
  * by category.
  */
 function updateInfoOnPage(inventoryData, itemsByCategory) {
-  console.group("updateInfoOnPage()");
+  console.groupCollapsed("updateInfoOnPage()");
   console.log("Updating stock information on the page...");
 
   // We need to loop over all the items and update each of their "in stock"
@@ -231,7 +231,7 @@ function getItemElements() {
  * Update the inventory information on the page.
  */
 function updateInventoryInfo() {
-  console.group("updateInventoryInfo()");
+  console.groupCollapsed("updateInventoryInfo()");
 
   // We could wait and get the elements after recieving the data, but it's faster
   // to do it while waiting for the request, since we have to wait anyway.
@@ -251,5 +251,8 @@ function updateInventoryInfo() {
       console.error(error);
     });
   
-    console.groupEnd();
+  // Notice in the console how this group ends before the data is recieved?
+  // That's because when this console.groupEnd() runs, we're still waiting on
+  // the request to load.
+  console.groupEnd();
 }

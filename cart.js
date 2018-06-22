@@ -58,7 +58,7 @@ function addItemToCart(itemElement) {
   let addToCartButton = itemElement.querySelector(".addToCartButton");
   addToCartButton.innerHTML = addToCartButtonText.inCart;
   addToCartButton.disabled = true;
-  console.log("Item marked as added.");
+  console.log("Item marked as added on the page.");
   console.groupEnd();
 }
 
@@ -89,7 +89,7 @@ function removeItemFromCart(itemId) {
   let addToCartButton = itemElement.querySelector(".addToCartButton");
   addToCartButton.innerHTML = addToCartButtonText.outOfCart;
   addToCartButton.disabled = false;
-  console.log("Item marked as removed.");
+  console.log("Item marked as removed on the page.");
 
   buildCart();
   console.groupEnd();
@@ -251,7 +251,7 @@ function updateAmountInCart(itemId, amount) {
  * Add click listeners to all the cart buttons.
  */
 function initializeCart() {
-  console.group("initializeCart()");
+  console.groupCollapsed("initializeCart()");
   console.log("Initializing cart behaviour.")
 
   // Find all the add to cart buttons
