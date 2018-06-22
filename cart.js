@@ -175,7 +175,7 @@ function buildCart() {
   let totalCostElement = cartItemsContainer.parentElement.querySelector(".totalCostNumber");
   // Round and add the total cost:
   totalCost = formatWithTwoDecimalPlaces(totalCost);
-  totalCostElement.textContent = totalCost;
+  totalCostElement.textContent = `$${totalCost}`;
   console.log("Total cost of cart: $", totalCost);
 
   cartItemsContainer.innerHTML = html;
