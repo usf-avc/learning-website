@@ -441,23 +441,25 @@ main {
   flex-grow: 1;
 }
 
+.cartFooter {
+  padding: 1rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .cart .totalCost {
-  flex-grow: 1;
-  justify-content: flex-end;
-  align-items: flex-end;
   text-transform: uppercase;
   font-size: 1rem;
+  font-family: lato;
+  padding: 1rem;
+  align-self: flex-end;
 }
 
 .cart .totalCost span {
   font-weight: bold;
   font-size: 1.5rem;
   padding: 0 2rem 0 1rem;
-}
-
-.cartFooter {
-  padding: 1rem 2rem;
-  text-align: center;
 }
 
 /* Footer: */

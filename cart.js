@@ -95,6 +95,15 @@ function toggleCart() {
   document.querySelector(".cartContainer").classList.toggle("hidden");
 }
 
+/** 
+ * Round a number to two decimal places.
+ * @param {number} number
+ * @returns {string} The number, with two decimal places.
+ */
+function formatWithTwoDecimalPlaces(number) {
+  return Number.parseFloat(number).toFixed(2);
+}
+
 /**
  * Generate and insert the HTML to show the items in the cart.
  */
@@ -103,11 +112,11 @@ function buildCart() {
 
   let html = ``;
 
+  // Create total cost variable
+  let totalCost = 0;
+
   if(cart.length != 0) {
     // If there are some items in the cart
-
-    // Create total cost variable
-    let totalCost = 0;
 
     // Add each item to the cart as new HTML
     cart.forEach(function(item) {
@@ -120,25 +129,29 @@ function buildCart() {
         <div class="itemDetails">
           <h3 class="itemName">${item.name}</h3>
           <p class="priceInfo">
-            <span class="itemPrice">$${item.pricePerItem}</span> × 
+            <span class="itemPrice">$${formatWithTwoDecimalPlaces(item.pricePerItem)}</span> × 
             <input type="number" min="1" max="${item.amountInStock}" data-id="${item.id}" aria-label="Amount in Cart" class="amountInCart" value="${item.amountInCart}"> in cart
           </p>
         </div>
         <div class="itemPrice itemTotalPrice">
-          $${totalItemPrice}
+          $${formatWithTwoDecimalPlaces(totalItemPrice)}
         </div>
         <button class="removeFromCartButton iconButton" data-id="${item.id}">Remove From Cart</button>
       </div>`;
 
       html += itemHTML;
     });
-
-    // Add the total cost:
-    html += `<div class="item totalCost">Total: <span>$${totalCost}</span></div>`;
   } else {
     // If there are no items in the cart:
     html = `<div class="item noItems"><span>There are no items in your cart yet. Go add some!</span></div>`;
   }
+
+  // Find the total cost element:
+  let totalCostElement = cartItemsContainer.parentElement.querySelector(".totalCostNumber");
+  // Round and add the total cost:
+  console.log(totalCost);
+  totalCost = totalCost;
+  totalCostElement.textContent = formatWithTwoDecimalPlaces(totalCost);
 
   cartItemsContainer.innerHTML = html;
 
