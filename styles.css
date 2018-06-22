@@ -19,8 +19,7 @@ body {
   align-items: center;
   color: white;
   /* Stacking backgrounds allows the color over the image */
-  background: linear-gradient(rgba(21, 101, 192, 0.9), rgba(21, 101, 192, 0.9)), 
-              center 30% / cover no-repeat url(images/cover-image.jpg);
+  background-color: steelblue;
   padding: 100px 32px 70px;
 }
 
@@ -61,8 +60,8 @@ body {
   align-items: center;
   padding: 8px 32px;
   
-  background: rgba(21, 101, 192, 0.9);
-  box-shadow: 0 -3px 8px 3px rgba(0, 0, 0, 0.5);
+  background: steelblue;
+  box-shadow: 0 -8px 8px 7px black;
 }
 
 /* Site logo and "AVC": */
@@ -117,7 +116,7 @@ body {
 
 /* This button style is also used in the cart close button */
 .toolBarTextButton {
-  background: transparent;
+  background-color: transparent;
   border: none;
   text-transform: uppercase;
   font-family: "Lato", "Trebuchet MS", "Helvetica", sans-serif;
@@ -125,9 +124,11 @@ body {
   letter-spacing: 1px;
   padding: 8px;
   cursor: pointer;
+  /* Without a transparent border here, if a border shows up on hover it could
+  mess up the layout */
   border: 2px solid transparent;
   border-radius: 48px;
-  transition: 0.2s ease border, 0.1s ease background;
+  transition: 0.2s border, 0.2s background-color;
 }
 
 .openCartButton {
@@ -146,11 +147,7 @@ body {
 }
 
 .toolBarTextButton:active {
-  background-color: rgba(0, 0, 0, 0.2)
-}
-
-.openCartButton:active {
-  background-color: rgba(255, 255, 255, 0.2)
+  background-color: lightgray;
 }
 
 /* Main content area: */
@@ -164,7 +161,7 @@ main {
 .category {
   position: relative;
   overflow: hidden;
-  transition: 0.5s ease height;
+  transition: 0.5s height;
 }
 
 .category.collapsed {
@@ -188,7 +185,7 @@ main {
 
 .collapseCategoryButton {
   transform: rotate(-90deg);
-  transition: 0.5s 0.5s ease transform;
+  transition: 0.5s 0.5s transform;
   position: absolute;
   top: 72px;
   left: 16px;
@@ -203,14 +200,14 @@ main {
   font-family: "Comfortaa", "Helvetica", "Trebuchet MS", sans-serif;
   font-weight: bold;
   width: 100%;
-  border-bottom: 2px solid rgba(21, 101, 192, 0.9);
+  border-bottom: 2px solid steelblue;
   letter-spacing: 2px;
   padding-bottom: 16px;
   text-align: center;
   text-transform: uppercase;
   padding-top: 72px;
   margin-top: 0;
-  transition: 0.5s 0.5s ease border-color;
+  transition: 0.5s 0.5s border-color;
 }
 
 .category.collapsed h2 {
@@ -277,59 +274,59 @@ main {
 /* This button style is used in the cart as well */
 .primaryButton {
   background-color: white;
-  border-color: rgba(21, 101, 192, 0.9);
+  border-color: steelblue;
   border-style: solid;
   border-width: 2px;
   padding: 8px 16px;
   border-radius: 48px;
   align-self: center;
   text-transform: uppercase;
-  color: rgba(21, 101, 192, 0.9);
+  color: steelblue;
   font-weight: bold;
-  transition: 0.3s ease color, 0.3s ease background-color, 0.5s ease box-shadow;
+  transition: 0.3s color, 0.3s background-color, 0.4s box-shadow;
   letter-spacing: 0.5px;
 }
 
 .inCart .addToCartButton:disabled {
-  animation: inCartButtonFade 1s ease 1;
+  animation: inCartButtonFade 1s 1;
   background: white;
   border-color: transparent;
-  color: rgba(46, 125, 50, 0.9);
+  color: green;
   opacity: 0.8;
 }
 
 /* This defines the animation that runs once when an item is added to the cart */
 @keyframes inCartButtonFade {
   0% {
-    background-color: rgba(21, 101, 192, 0.9);
-    border-color: rgba(21, 101, 192, 0.9);
+    background-color: steelblue;
+    border-color: steelblue;
     color: white;
     opacity: 1;
   }
   60% {
     background-color: white;
-    color: rgba(21, 101, 192, 0.9);
-    border-color: rgba(21, 101, 192, 0.9);
+    color: steelblue;
+    border-color: steelblue;
     opacity: 1;
   }
   100% {
     background-color: white;
     border-color: transparent;
-    color: rgba(46, 125, 50, 0.9);
+    color: green;
     opacity: 0.8;
   }
 }
 
 .primaryButton:disabled {
   border-color: transparent;
-  color: rgba(55, 71, 79, 1);
+  color: gray;
 }
 
 .primaryButton:not(:disabled):hover,
 .primaryButton:not(:disabled):focus {
-  background-color: rgba(21, 101, 192, 0.9);
+  background-color: steelblue;
   color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 4px black;
   cursor: pointer;
 }
 
@@ -350,7 +347,7 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 -8px 8px 7px black;
   z-index: 19;
   display: flex;
   align-items: center;
@@ -362,7 +359,7 @@ main {
   width: 80%;
   max-width: 800px;
   background-color: white;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 15px black;
   z-index: 20;
   border-radius: 8px;
   display: flex;
@@ -423,7 +420,7 @@ main {
   text-align: center;
   font-size: 16px;
   border: none;
-  border-bottom: 1px solid rgba(21, 101, 192, 0.9);
+  border-bottom: 1px solid steelblue;
   font-weight: bold;
   font-family: "Lato", "Trebuchet MS", "Helvetica", sans-serif;
   margin-bottom: 1px;
@@ -476,7 +473,7 @@ main {
 /* Footer: */
 
 .siteFooter {
-  background-color: rgba(21, 101, 192, 0.9);
+  background-color: steelblue;
   color: white;
   text-align: center;
   padding: 32px;
@@ -503,14 +500,14 @@ main {
     left: 0;
     right: 0;
     background-color: white;
-    box-shadow: 0 3px 8px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 8px 7px black;
     padding: 16px;
     justify-content: space-evenly;
     text-align: center;
     overflow-x: scroll;
   }
   .shortcuts a {
-    color: rgba(21, 101, 192, 0.9);
+    color: steelblue;
   }
 }
 
