@@ -1,9 +1,8 @@
-
 /**
  * The location of the inventory.json file on the AVC server.
  * @type {string}
  */
-const inventoryUrl = "https://cdn.rawgit.com/usf-avc/learning-website/master/remote-files/inventory.json";
+const inventoryUrl = "https://rawgit.com/usf-avc/learning-website/master/remote-files/inventory.json";
 
 /**
  * The text to put after the number of items in stock. This is kept as a
@@ -91,39 +90,41 @@ function getInventoryData() {
 /**
  * Update the "in stock" information on the page.
  * @param {Object} inventoryData Processed data object from the JSON on the server.
- * @param {Object} itemsByCategory Object with all of the item elements, arranged
- * by category.
+ * @param {Object} itemElements Object with all of the item elements, arranged
+ * like inventoryData.
  */
-function updateInfoOnPage(inventoryData, itemsByCategory) {
+function updateInfoOnPage(inventoryData, itemElements) {
+  'use strict';
   console.groupCollapsed("updateInfoOnPage()");
   console.log("Updating stock information on the page...");
 
   // We need to loop over all the items and update each of their "in stock"
-  // counts. itemsByCategory is an object, not an array, so we can't forEach
-  // directly on it, but we can if we use the entries() method, which
-  // returns an array of two-element arrays, where the first element is the
-  // key and the second is the value:
-  Object.entries(itemsByCategory).forEach(function(category) {
+  // counts. The items are arranged by category, so first we need to loop over
+  // the categories:
+  itemElements.categories.forEach(function(category) {
 
-    // We used the category id as the key before, so it's the first element now:
-    let categoryId = category[0];
-    
-    console.groupCollapsed(categoryId);
-    console.log("Updating items in category with id:", categoryId);
+    console.groupCollapsed(category.name);
+    console.log("Updating items in category with id:", category.name);
 
-    // The items were stored as the value, so the second element is is the
-    // object that has all the items. We have to do the same thing here and 
-    // get the entries of this sub-object:
-    Object.entries(category[1]).forEach(function(item) {
-      // We used the item id as the key before, so it's the first element now:
-      let itemId = item[0], itemElement = item[1];
+    // We need to find the category in the inventoryData so that we can get the
+    // stock information from it later. Array.find() returns the first element
+    // for which the function is true.
+    let categoryData = inventoryData.categories.find(function(categoryObject) {
+      return categoryObject.name === category.name;
+    });
 
-      console.groupCollapsed(itemId);
-      console.log("Updating info for item with id:", itemId);
+    // Now we can loop over the elements in the categories:
+    category.items.forEach(function(item) {
 
-      // Now we have all of the information necessary to get the data from the
-      // inventoryData object. We needed the category id and the element id.
-      let itemStockAmount = inventoryData[categoryId][itemId].amountInStock;
+      console.groupCollapsed(item.name);
+      console.log("Updating info for item with id:", item.name);
+
+      // Now we need to find the actual stock data item. This can be done in 
+      // almost exactly the same way as finding the category:
+      let itemData = categoryData.items.find(function(itemObject) {
+        return itemObject.name === item.name;
+      }),
+      itemStockAmount = itemData.amountInStock;
 
       // Let's figure out which text to use by checking the stock amount:
       let itemStockText, itemInStock = true;
@@ -144,20 +145,20 @@ function updateInfoOnPage(inventoryData, itemsByCategory) {
       console.log("Item in stock:", itemInStock);
       
       // Now it's time to use that information by changing the page contents.
-      itemElement.querySelector(".inStockCount").innerHTML = itemStockAmount;
-      itemElement.querySelector(".inStockText").innerHTML = itemStockText;
+      item.element.querySelector(".inStockCount").innerHTML = itemStockAmount;
+      item.element.querySelector(".inStockText").innerHTML = itemStockText;
 
       // And let's add an outOfStock class and disable buttons for any items
       // that are out of stock:
       if(itemInStock === false) {
-        itemElement.classList.add("outOfStock");
-        let addToCartButton = itemElement.querySelector(".addToCartButton");
+        item.element.classList.add("outOfStock");
+        let addToCartButton = item.element.querySelector(".addToCartButton");
         addToCartButton.disabled = true;
         addToCartButton.innerHTML = addToCartButtonText.outOfStock;
       } else {
         // Make sure the ones that are in stock don't have that class
-        itemElement.classList.remove("outOfStock");
-        itemElement.querySelector(".addToCartButton").disabled = false;
+        item.element.classList.remove("outOfStock");
+        item.element.querySelector(".addToCartButton").disabled = false;
       }
       console.log("All item info updated successfully.");
       console.groupEnd();
@@ -180,51 +181,58 @@ function getItemElements() {
 
   // We need to find all of the items on the page and store them for later.
   // Lets create an empty object to store them in:
-  let itemsByCategory = {};
+  let itemElements = {
+    "categories": []
+  };
   // First, find all of the categories:
-  let categoryElements = document.querySelectorAll(".category");
+  let categoryElementsList = document.querySelectorAll(".category");
   // querySelectorAll returns a NodeList, which is hard to work with, but we
   // can convert it to an array:
-  let categoryElementsArray = Array.from(categoryElements);
+  let categoryElementsArray = Array.from(categoryElementsList);
 
   // Now we can loop over it easily, executing this function on each category:
   categoryElementsArray.forEach(function(categoryElement) {
-    // Save the category name:
-    let categoryId = categoryElement.id;
-    console.groupCollapsed(categoryId);
-    console.log("Getting items for category with id: ", categoryId);
+    // Save the category name and create an object to add later to itemElements
+    let categoryObject = {
+      "name": categoryElement.id,
+      "items": []
+    };
+    console.groupCollapsed(categoryObject.name);
+    console.log("Getting items for category with id:", categoryObject.name);
 
-    // Add the category as an empty object child of our itemsByCategory object:
-    itemsByCategory[categoryId] = {};
     // Each category is an HTML <section> element. Let's get all the items in
-    // the category, and convert that to an array:
-    let itemElements = categoryElement.querySelectorAll(".item");
-    let itemElementsArray = Array.from(itemElements);
-    //Now we can loop over the items. This is a loop within a loop:
-    itemElementsArray.forEach(function(itemElement) {
-      let itemId = itemElement.id;
-      console.groupCollapsed(itemId);
-      console.log("Found item with id:", itemId);
-      console.log(itemElement);
+    // the category, and convert that to an array as well:
+    let itemElementsList = categoryElement.querySelectorAll(".item");
+    let itemElementsArray = Array.from(itemElementsList);
 
-      // And finally add each item to the category object it belongs to.
-      itemsByCategory[categoryId][itemElement.id] = itemElement;
-      console.log("Item added.");
-      console.groupEnd();
+    // Now we can convert the elements array to an array of objects in the format
+    // we need. Converting an array from one format to another is easy with 
+    // Array.map() which runs a function on each element and returns the whole
+    // new array.
+    let itemObjectsArray = itemElementsArray.map(function(itemElement) {
+      let itemObject = {
+        "name": itemElement.id,
+        "element": itemElement
+      };
+      return itemObject;
     });
 
-    console.log("All items found for this category:", itemsByCategory[categoryId]);
+    categoryObject.items = itemObjectsArray;
+
+    // Finally, add the categoryObject to the itemElements object:
+    itemElements.categories.push(categoryObject);
+
+    console.log("All items found for this category:", categoryObject);
     console.groupEnd();
   });
 
-  // Now itemsByCategory is an object that contains every category, and each
+  // Now itemElements is an object that contains every category, and each
   // category in that object is its own object that contains every item in
-  // the category. The following statement logs the object to the console so
-  // you can inspect it:
-  console.log("Items found and stored:", itemsByCategory);
+  // the category.
+  console.log("Items found and stored:", itemElements);
   console.groupEnd();
 
-  return itemsByCategory;
+  return itemElements;
 }
 
 /**
@@ -235,7 +243,7 @@ function updateInventoryInfo() {
 
   // We could wait and get the elements after recieving the data, but it's faster
   // to do it while waiting for the request, since we have to wait anyway.
-  let itemsByCategory = getItemElements();
+  let itemElements = getItemElements();
 
   // Let's get the inventory data and update the page:
   getInventoryData()
@@ -244,7 +252,7 @@ function updateInventoryInfo() {
       console.log("Data recieved:", inventoryData);
 
       // Update the page using the recieved data:
-      updateInfoOnPage(inventoryData, itemsByCategory);
+      updateInfoOnPage(inventoryData, itemElements);
     })
     .catch(function(error) {
       // Just in case anything goes wrong.
