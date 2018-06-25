@@ -30,7 +30,7 @@
       ]
     },
     {
-      "category": "camera-accessories",
+      "name": "camera-accessories",
       "items": [
         {
           "name": "canon-lens-18-135mm",
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "category": "virtual-reality",
+      "name": "virtual-reality",
       "items": [
         {
           "name": "htc-vive",
@@ -68,7 +68,7 @@
       ]
     },
     {
-      "category": "vr-accessories",
+      "name": "vr-accessories",
       "items": [
         {
           "name": "gamesir-g3s-gamepad",
